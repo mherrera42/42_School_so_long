@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/10/21 17:50:02 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:24:00 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@
 # include <stdlib.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
-/*typedef struct mlx_key_data
+typedef struct  s_game
+{
+	mlx_t		*mlx;
+	mlx_image_t	*player;
+} t_game;
+
+typedef struct mlx_key_data
 {
 	keys_t			key;
 	action_t		action;
@@ -27,9 +33,6 @@
 	modifier_key_t	modifier;
 }	mlx_key_data;
 
-typedef struct mlx_image
-{
-	
-}; */
+void	ft_putstr_fd(char *s, int fd);
 
 #endif
