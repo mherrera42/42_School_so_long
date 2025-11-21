@@ -19,20 +19,33 @@
 # include <stdlib.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
+//Estructura juego
 typedef struct  s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*player;
 } t_game;
 
-typedef struct mlx_key_data
+//Estructura mapa
+typedef struct s_map
 {
-	keys_t			key;
-	action_t		action;
-	int32_t			os_key;
-	modifier_key_t	modifier;
-}	mlx_key_data;
+	char	**map; //Matriz en la que se guardará el mapa
+	int		width; //Ancho del mapa
+	int		height; //Alto del mapa
+	int		player_x;//Posición inicial del player en x
+	int		player_y; //Posición inicial del player en y
+	int		exit_x; //Posición de la salida en x
+	int		exit_y; //Posición de la salida en y
+	int		collectibles; //Nº de coleccionables
+}	t_map;
 
+//Funciones auxiliares de utilidad
+size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
+char	*ft_strrchr(const char *s, int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+//Funciones de validación del mapa
+int		check_extension(char *filename);
 
 #endif
