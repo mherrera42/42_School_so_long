@@ -10,29 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	fill(char **map, t_point size, t_point begin)
+#include "../includes/so_long.h"
+
+//Mide la longitud de un string recibido
+size_t	ft_strlen(const char *s)
 {
-	if (row < 0)
-	{
-		/* code */
-	}
-	
+	int	i;
+
+	i = 0;
+
+	while (s[i])
+		i++;
+	return ((size_t *)i);
 }
 
-void	flood_fill(char **map, t_point	size, t_point begin)
-{
-	char	target = map[begin.y][begin.x];
-	fill(map, size, target, begin.y, begin.x);
-}
-
+//Escribe en un fd el string mandado
 void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
-	
-	i = 0;
-	while(s[i])
+	if (s)
+		write(fd, s, ft_strlen(s));
+}
+
+//Recorre inversamente un str en busca de la última ocurrencia de un caracter
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
+
+	i = ft_strlen(s);
+
+	while(i > 0)
 	{
-		write(fd, &s[i], 1);
+		if (s[i] == (char)c)
+			return ((char *)&s[i])
+		i--
+	}
+	return (NULL);
+}
+
+//Compara letra a letra 2 str y devuelve la diferencia entre ellos, 
+//retornando 0 si son iguales
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char) *s2;
+
+	while(i < n && (str1[i] || str2[i]))
+	{
+		if(str1[i] != str2[i])
+			return ((str1[i] - str2[i]));
 		i++;
 	}
+	return (0);
 }
