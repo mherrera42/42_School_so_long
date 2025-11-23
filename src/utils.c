@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/11 17:42:41 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/23 13:19:59 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ size_t	ft_strlen(const char *s)
 }
 
 //Escribe en un fd el string mandado
-void	ft_putstr_fd(char *s, int fd)
+/*void	ft_putstr_fd(char *s, int fd)
 {
 	if (s)
 		write(fd, s, ft_strlen(s));
-}
+}*/
 
 //Recorre inversamente un str en busca de la última ocurrencia de un caracter
 char	*ft_strrchr(const char *s, int c)
@@ -41,8 +41,8 @@ char	*ft_strrchr(const char *s, int c)
 	while(i > 0)
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i])
-		i--
+			return ((char *)&s[i]);
+		i--;
 	}
 	return (NULL);
 }

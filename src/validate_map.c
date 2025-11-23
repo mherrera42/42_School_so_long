@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/18 19:42:41 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/21 21:26:20 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,12 @@ int	check_four_sides(t_game *game)
 }
 
 //Función que comprueba que los caracteres del mapa sean los adecuados ->
-
+int	check_map_char(t_game *game)
+{
+	
+}
 //Función que comprueba la existencia de un path
+int	check_valid_path(t_game *game)
+{
+	
+}
