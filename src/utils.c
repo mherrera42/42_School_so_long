@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 13:08:20 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:27:46 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-//Escribe en un fd el string mandado
-/*void	ft_putstr_fd(char *s, int fd)
-{
-	if (s)
-		write(fd, s, ft_strlen(s));
-}*/
 
 //Recorre inversamente un str en busca de la última ocurrencia de un caracter
 char	*ft_strrchr(const char *s, int c)

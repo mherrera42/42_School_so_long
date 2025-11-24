@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 16:24:41 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:35:27 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	init_MLX42(t_game *game)
 	init_game(game);
 	init_textures(game);
 	//render_map(&game);
-	//mlx_key_hook(game->mlx, &keyhook, &game);
+	mlx_key_hook(game->mlx, &keyhook, &game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
 	mlx_delete_image(game->mlx, game->player);
+	mlx_terminate(game->mlx);
 }
 
 void	init_game(t_game *game)
@@ -38,7 +38,7 @@ void	init_game(t_game *game)
 	}
 }
 
-/*void	keyhook(mlx_key_data_t keydata, void *param)
+void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
@@ -49,16 +49,15 @@ void	init_game(t_game *game)
 		if(keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
 		else if(keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-			game->player->instances[0].y -= 5;
+			game->player->instances[0].y -= TILE_SIZE;
 		else if(keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-			game->player->instances[0].y += 5;
+			game->player->instances[0].y += TILE_SIZE;
 		else if(keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-			game->player->instances[0].x += 5;
+			game->player->instances[0].x += TILE_SIZE;
 		else if(keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-			game->player->instances[0].x -= 5;
+			game->player->instances[0].x -= TILE_SIZE;
 	}
-}*/
-
+}
 
 int		main(int argc, char **argv)
 {
