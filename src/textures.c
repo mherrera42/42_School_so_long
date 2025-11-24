@@ -6,11 +6,11 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 12:35:53 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:23:03 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*#include "../includes/so_long.h"
+#include "../includes/so_long.h"
 
 void	load_texture(t_game *game, mlx_image_t **img, char *path, int x, int y)
 {
@@ -47,4 +47,4 @@ void	init_textures(t_game *game)
 		"includes/textures/collect.png", 100, 100);
 	load_texture(game, &game->exit,
 		"includes/textures/exit.png", 100, 100);
-}*/
+}
