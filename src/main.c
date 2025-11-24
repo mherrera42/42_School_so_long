@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/23 18:19:52 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 15:39:31 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/*int	error_msg(char* msg, int fd)
+int	error_msg(char* msg, int fd)
 {
 	write(fd, msg, ft_strlen(msg));
 	return (0);
 }
-
-void	init_game(t_game *game)
+/*void	init_game(t_game *game)
 {
 	game.mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	//Y lo protegemos
@@ -122,11 +121,11 @@ int	main (int argc, char **argv)
 	return (EXIT_SUCCESS);
 }*/
 
-int	error_msg(char *msg, int fd)
+/*int	error_msg(char *msg, int fd)
 {
 	write(fd, msg,ft_strlen(msg));
 	return (0);
-}
+}*/
 
 void	init_game(t_game *game)
 {
@@ -136,11 +135,9 @@ void	init_game(t_game *game)
 		error_msg("There was a problem loawding ᨐฅ\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	game->moves = 0;
-	game->map
 }
 
-void	keyhook(mlx_key_data_t keydata, void *param)
+/*void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
@@ -159,30 +156,33 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		else if(keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 			game->player->instances[0].x -= 5;
 	}
+}*/
+void	init_MLX42(t_game *game)
+{	
+	init_game(game);
+	//init_textures(game);
+	//render_map(&game);
+	//mlx_key_hook(game->mlx, &keyhook, &game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
+	mlx_delete_image(game->mlx, game->player);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int		fd;
 	t_game	game;
 
 	if(argc != 2)
-		return(error_msg("Mmmm... The number of arguments meow be incorrect ... ฅ ฅ\n"), 2);
+		return(error_msg("Mmmm... The number of arguments meow be incorrect ... ฅ ฅ\n", 2));
 	if(!check_extension(argv[1]))
-		return(error_msg("U sure the file has a valid extension? ฅᨐฅ\n"), 2);
+		return(error_msg("U sure the file has a valid extension? ฅᨐฅ\n", 2));
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return(error_msg("Meow? The file can't be open! ᨐฅ\n"), 2);
+		return(error_msg("Meow? The file can't be open! ᨐฅ\n", 2));
 	close(fd);
 
-	init_game(&game);
-	init_textures(&game);
-	render_map(&game);
-	mlx_key_hook(game.mlx, &keyhook, &game);
-	mlx_loop(game.mlx);
-	mlx_terminate(game.mlx);
-	mlx_delete_image(game.mlx, game.player);
-
+	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }

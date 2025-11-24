@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 00:34:09 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 12:35:28 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Función que cuenta las lineas
-int	count_height_map(char *filename)
+/*int	count_height_map(char *filename)
 {
 	int		height_map;
 	int		fd;
@@ -36,7 +36,7 @@ int	count_height_map(char *filename)
 	return (height_map);
 }
 
-int	read_map(t_map *map, char *filename)
+/*int	read_map(t_map *map, char *filename)
 {
 	int		i;
 	int		fd;
@@ -73,10 +73,11 @@ int	read_map(t_map *map, char *filename)
 		
 		remove_newline(line);
 		map[i]
-	}
+	}*/
 	
 }
-//Función que reserva memoria
-//Función que abre el archivo
+//Función que reserva memoria, usando la que cuenta lineas
+
 //Función que lee línea a línea
+
 //Función que calcula el ancho del mapa

@@ -6,26 +6,12 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:14:24 by mherrera          #+#    #+#             */
-/*   Updated: 2025/06/24 19:13:36 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:11:37 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int		i;
-	size_t	size;
-
-	i = 0;
-	size = 0;
-	while (s[i] != '\0')
-	{
-		size++;
-		i++;
-	}
-	return (size);
-}
+#include "../includes/get_next_line.h"
+#include "../includes/so_long.h"
 
 char	*ft_strchr(const char *s, int c)
 {

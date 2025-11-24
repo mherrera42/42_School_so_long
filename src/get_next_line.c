@@ -6,10 +6,12 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:24 by mherrera          #+#    #+#             */
-/*   Updated: 2025/06/24 19:20:03 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:12:20 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "../includes/get_next_line.h"
+#include "../includes/so_long.h"
 
 static char	*ft_reading_file(char *rem_chunk, int fd)
 {

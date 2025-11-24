@@ -10,7 +10,7 @@ SRC_FILES	= main.c \
 			  render_map.c \
 			  textures.c \
 			  get_next_line.c \
-			  get_next_line_utils.c
+			  get_next_line_utils.c 
 SRC_DIR		= src
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -19,9 +19,9 @@ OBJ_DIR		= $(SRC_DIR)/obj
 OBJ			= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 #Include Directories
-INCLUDES	= -I./includes -I./includes/MLX42/include
+INCLUDES	= -I./includes/MLX42/include
 # MLX42 Config
-MLX42_DIR	= includes/MLX42/build
+MLX42_DIR	= includes/MLX42/build/
 MLX42		= $(MLX42_DIR)/libmlx42.a
 CFLAGS		= -Wall -Wextra -Werror $(INCLUDES)
 FLAGS_MLX	= -ldl -lglfw -pthread -lm
@@ -38,25 +38,25 @@ NC=\033[0m  # (reset)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo '$(PINK) 🌱🐞 Littlebugs started to work $... 🌱⚒️$(NC)'
+	echo '$(PINK) 🌱🐞 Littlebugs started to work $... 🌱⚒️$(NC)'
 	$(CC) $(CFLAGS) $(OBJ) $(MLX42) -o $(NAME) $(FLAGS_MLX)
-	@echo '$(GREEN) Linking finished!🌱🌼 $(NAME!) is ready!$(NC)'
+	echo '$(GREEN) Linking finished!🌱🌼 $(NAME!) is ready!$(NC)'
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@echo '$(PINK) $< 🌱 Bugs are building$... 🐞$(NC)'
+	echo '$(PINK) $< 🌱 Bugs are building$... 🐞@$(NC)'
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
 
 clean:
-	@echo '$(RED) 🧼 Bugs are cleaning $(NAME) objects ... 🫧🐛 $'
+	echo '$(RED) 🧼 Bugs are cleaning $(NAME) objects ... 🫧🐛'
 	$(RM) -rf $(OBJ) 
 
 fclean: clean
-	@echo '$(RED) 🧼 Just cleaning up a bit more! 🫧🐝 $'
+	echo '$(RED) 🧼 Just cleaning up a bit more! 🫧🐝'
 	$(RM) $(NAME)
-	@echo '$(BLUE)🦋🫧🧼🫧 The bugs have clean everything! 🫧🧼🫧🐞$(NC)'
+	echo '$(BLUE)🦋🫧🧼🫧 The bugs have clean everything! 🫧🧼🫧🐞$(NC)'
 
 re: fclean all
 

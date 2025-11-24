@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/23 18:02:10 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 13:08:50 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ typedef struct s_map
 
 //main.c
 int		error_msg(char *msg, int fd);
-void	init_game(t_game *game)
+void	init_game(t_game *game);
 void	keyhook(mlx_key_data_t keydata, void *param);
 
 //utils.c
 size_t	ft_strlen(const char *s);
 //void	ft_putstr_fd(char *s, int fd);
 char	*ft_strrchr(const char *s, int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 
 //validate_map.c
 int		check_extension(char *filename);
