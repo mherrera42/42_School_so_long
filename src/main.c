@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 16:23:55 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:24:41 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ void	init_game(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 }
-
-/*void	init_textures(t_game *game)
-{
-	//En la variable texture definida previamente, volcamos los datos
-	//de la textura del jugador, para poder cargarla 
-	mlx_texture_t *texture;
-	texture = mlx_load_png("includes/textures/player.png");
-	//Y la protegemos
-	if (!texture)
-	{
-		error_msg("Where is the character?... There's no texture!", STDERR_FILENO);
-		mlx_terminate(game->mlx);
-		exit(EXIT_FAILURE);
-	}
-	//En la variable player de la estructura game, vamos a colocar la textura
-	//cargada previamente. Lo que estamos haciendo, es duplicar la textura...
-	game->player = mlx_texture_to_image(game->mlx, texture);
-	//... por ello, la borramos de la variable texture creada previamente,
-	//evitando una fuga de memoria
-	mlx_delete_texture(texture);
-	//En caso de que no exista la imagen del player, o al ponerla en la ventana haya un error, 
-	//se comunica y se cierra el programa
-	if (!game->player || mlx_image_to_window(game->mlx, game->player, 100, 100) < 0)
-    {
-        error_msg((char *)mlx_strerror(mlx_errno), STDERR_FILENO);
-        mlx_terminate(game->mlx);
-        exit(EXIT_FAILURE);
-    }
-}*/
 
 /*void	keyhook(mlx_key_data_t keydata, void *param)
 {
