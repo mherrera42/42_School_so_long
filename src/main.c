@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 16:35:27 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/24 17:47:46 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	error_msg(char* msg, int fd)
 {
+	//Crear una funcionalidad que libere memoria de lo que se le pase
+	//siempre que se indique
+	/*if (mod == 1)
+		free (lo que sea);
+	*/
 	write(fd, msg, ft_strlen(msg));
 	return (0);
 }
