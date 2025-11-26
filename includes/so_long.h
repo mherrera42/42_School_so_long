@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 13:08:50 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:31:55 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_map
 	int		player_y; //Posición inicial del player en y
 	int		exit_x; //Posición de la salida en x
 	int		exit_y; //Posición de la salida en y
-	int		collectibles; //Nº de coleccionables
+	int		collectibles; //Nº de coleccionables, se saca con el número de C que haya en el mapa
 }	t_map;
 
 //main.c

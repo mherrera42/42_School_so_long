@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 17:47:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:30:09 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	error_msg(char* msg, int fd)
 		free (lo que sea);
 	*/
 	write(fd, msg, ft_strlen(msg));
-	return (0);
+	return (EXIT_FAILURE);
 }
 void	init_MLX42(t_game *game)
 {	
@@ -70,15 +70,15 @@ int		main(int argc, char **argv)
 	t_game	game;
 
 	if(argc != 2)
-		return(error_msg("Mmmm... The number of arguments meow be incorrect ... ฅ ฅ\n", 2));
-	if(!check_extension(argv[1]))
+		return(error_msg
+			("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n", 2));
+	if(check_extension(argv[1]))
 		return(error_msg("U sure the file has a valid extension? ฅᨐฅ\n", 2));
-
+	//Si el mapa se puede leer correctamente, continuamos con el flujo del programa
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return(error_msg("Meow? The file can't be open! ᨐฅ\n", 2));
 	close(fd);
-
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 12:35:13 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/26 17:24:55 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	check_extension(char *filename)
 	//Comparo si la extensión existe, y con strncmp, compruebo si lo guardado 
 	//en extensión es .ber (4 caracteres)
 	if(!extension || ft_strncmp (extension, ".ber", 5) != 0)
-		return (0);
-	return (1);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 /*
