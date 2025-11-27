@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   allocate_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/26 18:25:47 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/11/27 12:37:22 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
 #include "includes/get_next_line.h"
+#include "includes/so_long.h"
 
-int	measure_map(char *filename)
+// Función que mide el tamaño del mapa... En ella, se comprueba también que
+// el mapa sea cuadrado
+int	measure_map(t_map *map, char *filename)
 {
-	int		height_map;
-	int		width_map;
-	int		width_prev;
 	int		fd;
 	char	*line;
-	
-	height_map = 0;
-	width_prev = 0;
+	int		width_prev;
+
+	map->height = 0;
+	map->width = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
@@ -31,49 +31,60 @@ int	measure_map(char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			return (EXIT_FAILURE);
-		width_map = ft_strlen(line) - 1;
-		if (width_prev && width_prev != width_map)
+		
+		map->width = ft_strlen(line) - 1;
+		if (map->width > 0 && line[map->width - 1] == '\n')
+			map->width--;
+		if (width_prev && width_prev != map->width)
+			// La función de retorno de error también debería liberar memoria?
+			// Debería cerrar el fichero?
 			return (error_msg("What? The mawp is not a quadrangle! ᨐฅ\n", 2));
-		height_map++;
-		width_prev = width_map;
+		map->height++;
+		width_prev = map->width;
 		free(line);
 	}
 	close(fd);
-	if(height_map == 0 || width_map == 0)
-		return(error_msg("Meow? The map is too smawll! ฅ ฅ ", 2));
-	return (height_map);
+	if (map->height <= 0 || map->width <= 0)
+		return (error_msg("Meow? The map is too smawll! ฅ ฅ ", 2));
+	return (EXIT_SUCCESS);
 }
 
+// Función que lee y reserva memoria para el mapa
 int	read_map(t_map *map, char *filename)
 {
 	int		fd;
 	int		y;
 	char	*line;
-	
-	//1. Contar lineas con la funcion que cuenta lineas, para determinar la
-	//altura del mapa
-	map->height = count_height_map(filename);
-	if (map->height == 0)
-		return(error_msg("Meow? The map is too smawll! Height is zerow! ฅ ฅ", 2));
-	//2. Reservamos memoria para la matriz en la que guardaremos el mapa
-	map->map = malloc (map->height * sizeof(char *));
-	//3. Leer cada línea del archivo. Para ello podemos leer con get_next_line.
+
 	y = 0;
+	// Reservo memoria para todas las lineas de la matriz
+	map->map = malloc(map->height * sizeof(char *));
+	// Protejo el malloc
+	if (!map->map)
+		return (error_msg("Mewmory couldn't be allocated ^╥˕╥^", 2));
 	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		// Libero aquí??
+		return (error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
+	// Mientras la pos de y en que estamos sea menor que la altura total
+	// del mapa, vamos guardando en line la siguiente linea (seguimos leyendo),
+	// y reservamos memoria para cada columna
 	while (y < map->height)
 	{
-		//Cuando entramos a este bucle, leemos una linea, de modo que el mapa tiene una 
-		//Dentro del while leo 1 linea, si no es nula (tengo contenido), hago un realloc
-		//de map, y la dimension de la primera posicion de la matriz en x es 1
-		//Después, debería guardar la posicion en y, y para la posición en x hacemos
-		//map[y] = calloc(strlen(line) * sizeof (char)); Asi decimos: esta fila tiene x columnas
 		line = get_next_line(fd);
+		// Si tenemos caracteres invalidos, salimos, error, y liberamos
+		if (!check_char(line))
+			// Libera?
+			return (error_msg("Meow? There are invalid characters! ^╥˕╥^", 2));
+		//Reservamos memoria para cada columna
+		map->map[y] = malloc(map->width * sizeof(char *));
+		if (!map->map[y])
+			// Liberar???
+			return (error_msg("Mewmory couldn't be allocated ^╥˕╥^", 2));
+		// Rellenamos el mapa, copiando para ello cada linea en la matirz
+		ft_strncpy(map->map[y], line, map->width + 1);
 		y++;
 	}
 	close(fd);
+	return (EXIT_SUCCESS);
 }
-//Función que reserva memoria, usando la que cuenta lineas
-
-//Función que lee línea a línea
-
-//Función que calcula el ancho del mapa
