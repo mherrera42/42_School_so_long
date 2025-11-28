@@ -32,7 +32,7 @@ int	measure_map(t_map *map, char *filename)
 		if (!line)
 			return (EXIT_FAILURE);
 		
-		map->width = ft_strlen(line) - 1;
+		map->width = ft_strlen(line);
 		if (map->width > 0 && line[map->width - 1] == '\n')
 			map->width--;
 		if (width_prev && width_prev != map->width)
@@ -43,6 +43,7 @@ int	measure_map(t_map *map, char *filename)
 		width_prev = map->width;
 		free(line);
 	}
+	//No cerrar hasta tener el mapa entero guardado
 	close(fd);
 	if (map->height <= 0 || map->width <= 0)
 		return (error_msg("Meow? The map is too smawll! ฅ ฅ ", 2));
@@ -58,6 +59,8 @@ int	read_map(t_map *map, char *filename)
 
 	y = 0;
 	// Reservo memoria para todas las lineas de la matriz
+	// Puedo crear un pubtero auxiliar y hacer malloc ahi y luego pegarlo en la estructura map.
+	// Esto da problemas :
 	map->map = malloc(map->height * sizeof(char *));
 	// Protejo el malloc
 	if (!map->map)
