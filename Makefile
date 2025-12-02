@@ -7,6 +7,7 @@ NAME		= so_long
 SRC_FILES	= main.c \
 			  utils.c \
 			  validate_map.c \
+			  read_map.c \
 			  render_map.c \
 			  textures.c \
 			  get_next_line.c \
@@ -38,12 +39,12 @@ NC=\033[0m  # (reset)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	echo '$(PINK) 🌱🐞 Littlebugs started to work $... 🌱⚒️$(NC)'
+	@echo '$(PINK) 🌱🐞 Littlebugs started to work $... 🌱⚒️$(NC)'
 	$(CC) $(CFLAGS) $(OBJ) $(MLX42) -o $(NAME) $(FLAGS_MLX)
-	echo '$(GREEN) Linking finished!🌱🌼 $(NAME!) is ready!$(NC)'
+	@echo '$(GREEN) Linking finished!🌱🌼 $(NAME!) is ready!$(NC)'
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	echo '$(PINK) $< 🌱 Bugs are building$... 🐞@$(NC)'
+	@echo '$(PINK) $< 🌱 Bugs are building$... 🐞 @$(NC)'
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):

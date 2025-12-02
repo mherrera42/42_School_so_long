@@ -6,11 +6,10 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:14:24 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 13:11:37 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/02 12:55:08 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
 #include "../includes/so_long.h"
 
 char	*ft_strchr(const char *s, int c)
