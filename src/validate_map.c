@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 16:31:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/02 16:32:42 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_extension(char *filename)
 } */
 int	check_map_char(t_map *map, char *line)
 {
-	t_game *game;
+	//t_game *game;
 	int	x;
 
 	x = 0;

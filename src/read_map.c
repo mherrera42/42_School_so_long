@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 16:26:34 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/02 16:36:50 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ int	free_and_error(int fd, char *line, t_map *map)
 	int	y;
 
 	y = 0;
-
 	if (line)
 		free(line);
-	if(fd >= 0)
+	if (fd >= 0)
 		close(fd);
-	if(map && map->map)
+	if (map && map->map)
 	{
 		while (y < map->height)
 		{
@@ -55,16 +54,18 @@ int	measure_map(t_map *map, char *filename)
 		return (error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
 	while (1)
 	{
-		line = get_next_line(fd); 
+		line = get_next_line(fd);
 		if (!line)
-			return(free_and_error(fd, line, map));
+			return (free_and_error(fd, line, map));
 		map->width = ft_strlen(line);
 		/* check_n_and_quad(fd, map->width, width_prev, line, map); */
 		if (map->width > 0 && line[map->width - 1] == '\n')
 			map->width--;
 		if (width_prev && width_prev != map->width)
-			return(free_and_error(fd, line, map), 
-				error_msg("What? The mawp is not a quadrangle! ᨐฅ\n",2)); */
+		{
+			free_and_error(fd, line, map);
+			return (error_msg("What? The mawp is not a quadrangle! ᨐฅ\n", 2));
+		}
 		map->height++;
 		width_prev = map->width;
 		free(line);
@@ -78,23 +79,23 @@ int	measure_map(t_map *map, char *filename)
 // Función que lee y reserva memoria para el mapa
 int	read_map(t_map *map, char *filename)
 {
-	int fd;
-	int y;
-	char *line;
-	
+	int		fd;
+	int		y;
+	char	*line;
+
+	y = 0;
 	line = NULL;
-	
 	map->map = malloc(map->height * sizeof(char *));
 	if (!map->map)
 		return (error_msg("Mewmory couldn't be allocated ^╥˕╥^", 2));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (free_and_error(fd, line, map), 
+		return (free_and_error(fd, line, map),
 			error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
 	while (y < map->height)
 	{
 		line = get_next_line(fd);
-		if (!check_char(map, line))
+		if (!check_map_char(map, line))
 			return (free_and_error(fd, line, map));
 		map->map[y] = malloc(map->width * sizeof(char) + 1);
 		if (!map->map[y])

@@ -6,59 +6,51 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 16:29:53 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:03:26 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-//Función que renderiza (o dibuja) la base del mapa
-/* void	render_map(t_map *map, char *line)
+// Función que renderiza (o dibuja) la base del mapa
+
+void	render_map(t_map *map, t_game *game)
 {
+	int	y;
 	int	x;
 
+	y = 0;
 	x = 0;
-	while(line[x])
+	while (y < map->height)
 	{
-		if(line[x] == '1')
-			load_texture
+		while (x < map->width)
+		{
+			if (map->map[y][x] == '0')
+				mlx_image_to_window(game->mlx, game->floor, (x * TILE_SIZE), (y
+						* TILE_SIZE));
+			if (map->map[y][x] == '1')
+				mlx_image_to_window(game->mlx, game->walls, (x * TILE_SIZE), (y
+						* TILE_SIZE));
+			else if (map->map[y][x] == 'P' || map->map[y][x] == 'C'
+				|| map->map[y][x] == 'E')
+				render_assets(map, game, x, y);
+			x++;
+		}
+		y++;
 	}
-	 */
 }
 
-/*
-//Función que renderiza (o dibuja) el pj, los coleccionables, la salida, etc
-void	render_assets()
-{
-	
-}*/
+// Función que renderiza (o dibuja) el pj, los coleccionables, la salida, etc
 
-// Función que comprueba que los caracteres del mapa sean los adecuados
-// Comprobamos si el caracter en el que estamos es una C, una E, una P,
-// un 1, o un 0. Si no es ninguno de esos caracteres, retornamos error
-/* int	check_map_char(t_map *map, char *line, int y)
+void	render_assets(t_map *map, t_game *game, int x, int y)
 {
-	int	x = 0;
-
-	while (line[x])
-	{
-		if(line[x] == '1')
-			mlx_image_to_
-		else if(line[x] == '0')
-			//Es camino / suelo
-		if(line[x] == 'P')
-			map->player_x = x;
-			map->player_y = y;
-		else if (line[x] == 'C')
-			//Debería obtener la posición del coleccionable
-			map->collectibles++;
-		else if (line[x] == 'E')
-			map->exit_x = x;
-			map->exit_y = y;
-		else
-			return (error_msg("The mawp is invalid! ᨐฅ\n", 2));
-			//Error
-		x++;
-	}
-	return (EXIT_SUCCESS);
-} */
+	if (map->map[y][x] == 'P')
+		mlx_image_to_window(game->mlx, game->player, (x * TILE_SIZE), (y
+				* TILE_SIZE));
+	if (map->map[y][x] == 'C')
+		mlx_image_to_window(game->mlx, game->collect, (x * TILE_SIZE), (y
+				* TILE_SIZE));
+	if (map->map[y][x] == 'E')
+		mlx_image_to_window(game->mlx, game->exit, (x * TILE_SIZE), (y
+				* TILE_SIZE));
+}

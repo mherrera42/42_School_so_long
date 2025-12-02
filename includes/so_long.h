@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 12:50:12 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:05:55 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ int				read_map(t_map *map, char *filename);
 int				check_extension(char *filename);
 int				check_n_and_quad(int fd, int width, int width_prev, char *line,
 					t_map *map);
+int				check_map_char(t_map *map, char *line);
 
 // render_map.c
+void			render_map(t_map *map, t_game *game);
+void			render_assets(t_map *map, t_game *game, int x, int y);
 
 // textures.c
 void			load_texture(t_game *game, mlx_image_t **img, char *path, int x,
