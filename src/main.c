@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 13:13:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:17:41 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_MLX42(t_game *game)
 {	
 	init_game(game);
 	init_textures(game);
-	//render_map(&game);
+	render_map(game);
 	mlx_key_hook(game->mlx, &keyhook, &game);
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->player);
@@ -68,7 +68,6 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	t_game	game;
-	t_map	*map = NULL;
 
 	if(argc != 2)
 		return(error_msg
@@ -76,8 +75,8 @@ int		main(int argc, char **argv)
 	if(check_extension(argv[1]))
 		return(error_msg("U sure the file has a valid extension? ฅᨐฅ\n", 2));
 	//Llamamos a read map, y si lee el mapa correctamente y reserva memoria, 
-	//continua el fllujo
-	read_map(map, argv[1]);
+	//continua el flujo     
+	read_map(&game.map, &game);
 	//Si el mapa se puede leer correctamente, continuamos con el flujo del programa
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

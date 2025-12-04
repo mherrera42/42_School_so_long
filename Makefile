@@ -28,36 +28,36 @@ CFLAGS		= -Wall -Wextra -Werror $(INCLUDES)
 FLAGS_MLX	= -ldl -lglfw -pthread -lm
 
 # Colors
-RED=\033[0;31m
-GREEN=\033[0;32m
-YELLOW=\033[1;33m
-BLUE=\033[0;34m
-PINK=\033[0;35m
+RED=\033[38;5;216m
+GREEN=\033[38;5;158m
+YELLOW=\033[38;5;229m
+BLUE=\033[38;5;159m
+PINK=\033[38;5;217m
 NC=\033[0m  # (reset)
 
 # RULES
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo '$(PINK) 🌱🐞 Littlebugs started to work $... 🌱⚒️$(NC)'
-	$(CC) $(CFLAGS) $(OBJ) $(MLX42) -o $(NAME) $(FLAGS_MLX)
-	@echo '$(GREEN) Linking finished!🌱🌼 $(NAME!) is ready!$(NC)'
+	@echo -e '$(PINK) 🌱🐞 Littlebugs are finishing their work $... 🌱⚒️$(NC)'
+	@$(CC) $(CFLAGS) $(OBJ) $(MLX42) -o $(NAME) $(FLAGS_MLX)
+	@echo -e '$(GREEN) Linking finished!🌱🌼 $(NAME) is ready!$(NC)'
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@echo '$(PINK) $< 🌱 Bugs are building$... 🐞 @$(NC)'
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo -e '$(PINK) $< 🌱 Bugs are building$.... 🐞 $(NC)'
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $@
 
 clean:
-	echo '$(RED) 🧼 Bugs are cleaning $(NAME) objects ... 🫧🐛'
-	$(RM) -rf $(OBJ) 
+	@echo -e '$(RED) 🧼 Bugs are cleaning $(NAME) objects ... 🫧🐛'
+	@$(RM) -rf $(OBJ) 
 
 fclean: clean
-	echo '$(RED) 🧼 Just cleaning up a bit more! 🫧🐝'
-	$(RM) $(NAME)
-	echo '$(BLUE)🦋🫧🧼🫧 The bugs have clean everything! 🫧🧼🫧🐞$(NC)'
+	@echo -e '$(RED) 🧼 Just cleaning up a bit more! 🫧🐝'
+	@$(RM) $(NAME)
+	@echo -e '$(BLUE)🦋🫧🧼🫧 The bugs have clean everything! 🫧🧼🫧🐞$(NC)'
 
 re: fclean all
 

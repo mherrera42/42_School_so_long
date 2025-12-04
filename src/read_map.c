@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 16:36:50 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:15:21 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 2. Cierra los ficheros que queden abiertos
 // 3. Limpia la estructura o matriz
 // Función auxiliar que centraliza la limpieza
-int	free_and_error(int fd, char *line, t_map *map)
+int	free_and_error(t_game *game, int fd, char *line)
 {
 	int	y;
 
@@ -26,29 +26,29 @@ int	free_and_error(int fd, char *line, t_map *map)
 		free(line);
 	if (fd >= 0)
 		close(fd);
-	if (map && map->map)
+	if (game->map.map)
 	{
-		while (y < map->height)
+		while (y < game->map.height)
 		{
-			if (map->map[y])
-				free(map->map[y]);
+			if (game->map.map[y])
+				free(game->map.map[y]);
 			y++;
 		}
-		free(map->map);
+		free(game->map.map);
 	}
 	return (EXIT_FAILURE);
 }
 
 // Función que mide el tamaño del mapa... En ella, se comprueba también que
 // el mapa sea cuadrado
-int	measure_map(t_map *map, char *filename)
+int	measure_map(t_game *game, char *filename)
 {
 	int		fd;
 	char	*line;
 	int		width_prev;
 
-	map->height = 0;
-	map->width = 0;
+	game->map.height = 0;
+	game->map.width = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
@@ -56,28 +56,28 @@ int	measure_map(t_map *map, char *filename)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (free_and_error(fd, line, map));
-		map->width = ft_strlen(line);
+			return (free_and_error(fd, line, game->map.map));
+		game->map.width = ft_strlen(line);
 		/* check_n_and_quad(fd, map->width, width_prev, line, map); */
-		if (map->width > 0 && line[map->width - 1] == '\n')
-			map->width--;
-		if (width_prev && width_prev != map->width)
+		if (game->map.width > 0 && line[game->map.width - 1] == '\n')
+			game->map.width--;
+		if (width_prev && width_prev != game->map.width)
 		{
-			free_and_error(fd, line, map);
+			free_and_error(fd, line, game->map.map);
 			return (error_msg("What? The mawp is not a quadrangle! ᨐฅ\n", 2));
 		}
-		map->height++;
-		width_prev = map->width;
+		game->map.height++;
+		width_prev = game->map.width;
 		free(line);
 	}
 	close(fd);
-	if (map->height <= 0 || map->width <= 0)
+	if (game->map.height <= 0 || game->map.width <= 0)
 		return (error_msg("Meow? The map is too smawll! ฅ ฅ ", 2));
 	return (EXIT_SUCCESS);
 }
 
 // Función que lee y reserva memoria para el mapa
-int	read_map(t_map *map, char *filename)
+int	read_map(t_game *game, char *filename)
 {
 	int		fd;
 	int		y;
@@ -85,23 +85,23 @@ int	read_map(t_map *map, char *filename)
 
 	y = 0;
 	line = NULL;
-	map->map = malloc(map->height * sizeof(char *));
-	if (!map->map)
+	game->map.map = malloc(game->map.height * sizeof(char *));
+	if (!game->map.map)
 		return (error_msg("Mewmory couldn't be allocated ^╥˕╥^", 2));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (free_and_error(fd, line, map),
+		return (free_and_error(fd, line, game->map.map),
 			error_msg("Meow? The file can't be opened! ᨐฅ\n", 2));
-	while (y < map->height)
+	while (y < game->map.height)
 	{
 		line = get_next_line(fd);
-		if (!check_map_char(map, line))
-			return (free_and_error(fd, line, map));
-		map->map[y] = malloc(map->width * sizeof(char) + 1);
-		if (!map->map[y])
-			return (free_and_error(fd, line, map),
+		if (!check_map_char(game->map.map, line))
+			return (free_and_error(fd, line, game->map.map));
+		game->map.map[y] = malloc(game->map.width * sizeof(char) + 1);
+		if (!game->map.map[y])
+			return (free_and_error(fd, line, game->map.map),
 				error_msg("Mewmory couldn't be allocated ^╥˕╥^", 2));
-		ft_strlcpy(map->map[y], line, map->width);
+		ft_strlcpy(game->map.map[y], line, game->map.width);
 		y++;
 	}
 	close(fd);

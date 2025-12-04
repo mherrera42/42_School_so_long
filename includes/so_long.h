@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 17:05:55 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:55:49 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// game struct
-typedef struct s_game
-{
-	mlx_t		*mlx;
-	mlx_image_t	*player;
-	mlx_image_t	*floor;
-	mlx_image_t	*walls;
-	mlx_image_t	*collect;
-	mlx_image_t	*exit;
-}				t_game;
-
 // map struct
 typedef struct s_map
 {
@@ -46,6 +35,18 @@ typedef struct s_map
 	int exit_y;       // Posición de la salida en y
 	int collectibles; // Nº de coleccionables,
 }				t_map;
+
+// game struct
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	mlx_image_t	*player;
+	mlx_image_t	*floor;
+	mlx_image_t	*walls;
+	mlx_image_t	*collect;
+	mlx_image_t	*exit;
+	t_map		map;
+}				t_game;
 
 // main.c
 int				error_msg(char *msg, int fd);

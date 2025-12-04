@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 16:32:42 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/04 19:00:49 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_extension(char *filename)
 			error_msg("What? The mawp is not a quadrangle! ᨐฅ\n", 2));
 	return (EXIT_SUCCESS);
 } */
-int	check_map_char(t_map *map, char *line)
+int	check_map_char(t_game *game, char *line)
 {
 	//t_game *game;
 	int	x;
@@ -43,7 +43,7 @@ int	check_map_char(t_map *map, char *line)
 			&& line[x] != 'E')
 			return (error_msg("The mawp is invalid! ᨐฅ\n", 2));
 		else if (line[x] == 'C')
-			map->collectibles ++;
+			game->map.collectibles ++;
 	}
 	return (EXIT_SUCCESS);
 }
@@ -52,5 +52,5 @@ int	check_map_char(t_map *map, char *line)
 // el player
 /* int	check_valid_path(t_game *game)
 {
-
+	
 } */
