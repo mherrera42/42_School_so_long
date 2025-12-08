@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/07 17:15:15 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:45:39 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ int	check_extension(char *filename)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-/* int	check_n_and_quad(int fd, int width, int width_prev, char *line,
-		t_map *map)
+int	check_n_and_quad(t_game *game, int fd, int width_prev, char *line)
 {
 	int	x;
 
-	if (width > 0 && line[width - 1] == '\n')
-		width--;
-	if (width_prev && width_prev != width)
-		return (free_and_error(fd, line, map),
-			ft_putstr_fd("What? The mawp is not a quadrangle! ᨐฅ\n", 2));
+	/* if (ft_strchr(line, '/n'))
+		ft */
+	if (game->map.width > 0 && line[game->map.width - 1] == '\n')
+		game->map.width--;
+	if (width_prev && width_prev != game->map.width);
+		return (throw_error(game, "What? The mawp is not a quadrangle! ᨐฅ\n",
+			 fd, line));
 	return (EXIT_SUCCESS);
-} */
+}
 int	check_map_char(t_game *game, char *line)
 {
 	int	x;
@@ -43,8 +44,12 @@ int	check_map_char(t_game *game, char *line)
 	{
 		if (line[x] != '1' && line[x] != '0' && line[x] != 'P' && line[x] != 'C'
 			&& line[x] != 'E')
-			return (ft_putstr_fd("The mawp is invalid! ᨐฅ\n", 2));
+		{
+			ft_putstr_fd("The mawp is invalid! ᨐฅ\n", 2);
+			return (EXIT_FAILURE);
+		}
 		else if (line[x] == 'C')
+			
 			game->map.collectibles++;
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/07 17:19:33 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:10:55 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void			init_game(t_game *game);
 void			keyhook(mlx_key_data_t keydata, void *param);
 
 // exit_utils.c
-int	ft_putstr_fd(char *msg, int fd);
-int	free_and_error(t_game *game, int fd, char *line);
+void			ft_putstr_fd(char *msg, int fd);
+int				throw_error(t_game *game, char *msg, int fd, char *line);
 
 // map_utils.c
 size_t			ft_strlen(const char *s);
@@ -69,7 +69,7 @@ int				measure_map(t_game *game, char *filename);
 int				read_map(t_game *game, char *filename);
 
 // validate_map.c
-int			check_extension(char *filename);
+int				check_extension(char *filename);
 /*int				check_n_and_quad(int fd, int width, int width_prev,
 					char *line,
 					t_map *map);*/
