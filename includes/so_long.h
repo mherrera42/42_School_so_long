@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/04 16:55:49 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:19:33 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_map
 	int exit_x;       // Posición de la salida en x
 	int exit_y;       // Posición de la salida en y
 	int collectibles; // Nº de coleccionables,
+	int collected;
 }				t_map;
 
 // game struct
@@ -49,29 +50,34 @@ typedef struct s_game
 }				t_game;
 
 // main.c
-int				error_msg(char *msg, int fd);
+//int				error_msg(char *msg, int fd);
+void			init_MLX42(t_game *game);
 void			init_game(t_game *game);
 void			keyhook(mlx_key_data_t keydata, void *param);
 
-// utils.c
+// exit_utils.c
+int	ft_putstr_fd(char *msg, int fd);
+int	free_and_error(t_game *game, int fd, char *line);
+
+// map_utils.c
 size_t			ft_strlen(const char *s);
 char			*ft_strrchr(const char *s, int c);
 int				ft_strncmp(char *s1, char *s2, size_t n);
 
 // read_map.c
-int				free_and_error(int fd, char *line, t_map *map);
-int				measure_map(t_map *map, char *filename);
-int				read_map(t_map *map, char *filename);
+int				measure_map(t_game *game, char *filename);
+int				read_map(t_game *game, char *filename);
 
 // validate_map.c
-int				check_extension(char *filename);
-int				check_n_and_quad(int fd, int width, int width_prev, char *line,
-					t_map *map);
-int				check_map_char(t_map *map, char *line);
+int			check_extension(char *filename);
+/*int				check_n_and_quad(int fd, int width, int width_prev,
+					char *line,
+					t_map *map);*/
+int				check_map_char(t_game *game, char *line);
 
 // render_map.c
-void			render_map(t_map *map, t_game *game);
-void			render_assets(t_map *map, t_game *game, int x, int y);
+void			render_map(t_game *game);
+void			render_assets(t_game *game, int x, int y);
 
 // textures.c
 void			load_texture(t_game *game, mlx_image_t **img, char *path, int x,

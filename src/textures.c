@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2025/11/24 16:31:23 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:14:57 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path, int x, int y)
 	mlx_texture_t	*texture;
 
 	texture = mlx_load_png(path);
-	if(!texture)
+	if (!texture)
 	{
-		error_msg("Hey! Where is the texture? There's newo texture! ^╥˕╥^ ", 2);
+		ft_putstr_fd("Hey! Where is the texture? There's newo texture! ^╥˕╥^ ", 2);
 		mlx_terminate(game->mlx);
 		exit(EXIT_FAILURE);
 	}
-
 	*img = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
-	
-	if(!(*img) || mlx_image_to_window(game->mlx, *img, x, y) < 0)
+	if (!(*img) || mlx_image_to_window(game->mlx, *img, x, y) < 0)
 	{
-		error_msg((char *)mlx_strerror(mlx_errno), STDERR_FILENO);
+		ft_putstr_fd((char *)mlx_strerror(mlx_errno), STDERR_FILENO);
 		mlx_terminate(game->mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -37,8 +35,7 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path, int x, int y)
 
 void	init_textures(t_game *game)
 {
-	load_texture(game, &game->player, 
-		"includes/textures/player.png", 100, 100);
+	load_texture(game, &game->player, "includes/textures/player.png", 100, 100);
 	/*load_texture(game, &game->floor,
 		"includes/textures/floor.png", 100, 100);
 	load_texture(game, &game->walls,

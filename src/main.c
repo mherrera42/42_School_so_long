@@ -6,24 +6,14 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/04 19:17:41 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/08 13:10:05 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	error_msg(char* msg, int fd)
-{
-	//Crear una funcionalidad que libere memoria de lo que se le pase
-	//siempre que se indique
-	/*if (mod == 1)
-		free (lo que sea);
-	*/
-	write(fd, msg, ft_strlen(msg));
-	return (EXIT_FAILURE);
-}
 void	init_MLX42(t_game *game)
-{	
+{
 	init_game(game);
 	init_textures(game);
 	render_map(game);
@@ -36,52 +26,61 @@ void	init_MLX42(t_game *game)
 void	init_game(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
-	if(!game->mlx)
-	{
-		error_msg("There was a problem loawding ᨐฅ\n", 2);
-		exit(EXIT_FAILURE);
-	}
+	if (!game->mlx)
+		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
 }
-
-void	keyhook(mlx_key_data_t keydata, void *param)
+* / void keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-
-	if(keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	// Hay que comprobar si en la posición a la que queremos ir hay
+	// un 0 o un 1, para evitar atravesar las paredes
+	// No necesito usar las instancias para mover al personaje
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
-		if(keydata.key == MLX_KEY_ESCAPE)
+		if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(game->mlx);
-		else if(keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-			game->player->instances[0].y -= TILE_SIZE;
-		else if(keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-			game->player->instances[0].y += TILE_SIZE;
-		else if(keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-			game->player->instances[0].x += TILE_SIZE;
-		else if(keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-			game->player->instances[0].x -= TILE_SIZE;
+		if (game->map.player_x != 1 && game->map.player_y != 1)
+		{
+			if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+				game->player->instances[0].y -= TILE_SIZE;
+			else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+				game->player->instances[0].y += TILE_SIZE;
+			else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+				game->player->instances[0].x += TILE_SIZE;
+			else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+				game->player->instances[0].x -= TILE_SIZE;
+		}
+		else if (game->map.player_x == 'C' && game->map.player_y == 'C')
+			game->map.collected++;
+		else if (game->map.player_x == 'E' && game->map.player_y == 'E')
+		{
+			if (game->map.collected == game->map.collectibles)
+			{
+				ft_putstr_fd("U collected all your mewmories! Congrats! ฅᨐฅ",
+					1);
+				EXIT_SUCCESS
+			}
+			else
+				ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^",
+					1);
+		}
 	}
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		fd;
 	t_game	game;
 
-	if(argc != 2)
-		return(error_msg
-			("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n", 2));
-	if(check_extension(argv[1]))
-		return(error_msg("U sure the file has a valid extension? ฅᨐฅ\n", 2));
-	//Llamamos a read map, y si lee el mapa correctamente y reserva memoria, 
-	//continua el flujo     
-	read_map(&game.map, &game);
-	//Si el mapa se puede leer correctamente, continuamos con el flujo del programa
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return(error_msg("Meow? The file can't be open! ᨐฅ\n", 2));
-	close(fd);
+	if (argc != 2)
+		return (ft_putstr_fd("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n",
+				2));
+	if (check_extension(argv[1]))
+		return (ft_putstr_fd("U sure the file has a valid extension? ฅᨐฅ\n",
+				2));
+	read_map(&game, argv[1]);
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }
