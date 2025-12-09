@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/08 17:10:55 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:30:52 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// enum messages
+typedef enum	e_msg
+{
+	GAME_SUCCESS = 0,
+	GAME_MISSING_COL,
+	ERR_ARGS,
+	ERR_FD,
+	ERR_MALLOC,
+	ERR_ARGS,
+	ERR_MAP_EXT,
+	ERR_MAP_SMALL,
+	ERR_MAP_QUAD,
+	ERR_MAP_FORMAT,
+	ERR_MLX_LOAD,
+}	t_msg;
+
 // map struct
-typedef struct s_map
+typedef struct	s_map
 {
 	char **map;       // Matriz en la que se guardará el mapa
 	int width;        // Ancho del mapa
@@ -38,7 +54,7 @@ typedef struct s_map
 }				t_map;
 
 // game struct
-typedef struct s_game
+typedef struct	s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*player;
@@ -57,7 +73,7 @@ void			keyhook(mlx_key_data_t keydata, void *param);
 
 // exit_utils.c
 void			ft_putstr_fd(char *msg, int fd);
-int				throw_error(t_game *game, char *msg, int fd, char *line);
+int				throw_error(t_game *game, char *msg, int fd, char *line, int free_mode);
 
 // map_utils.c
 size_t			ft_strlen(const char *s);

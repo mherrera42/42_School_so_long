@@ -6,14 +6,13 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/04 18:49:04 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:47:04 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// Función que renderiza (o dibuja) la base del mapa
-
+// renders (or draw) the map
 void	render_map(t_game *game)
 {
 	int	y;
@@ -40,8 +39,7 @@ void	render_map(t_game *game)
 	}
 }
 
-// Función que renderiza (o dibuja) el pj, los coleccionables, la salida, etc
-
+// renders (or draws) the game elements in a different plane of the map
 void	render_assets(t_game *game, int x, int y)
 {
 	if (game->map.map[y][x] == 'P')

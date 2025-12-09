@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/08 18:35:22 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:33:02 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game->mlx)
-		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
+		choose_err_msg(game, ERR_MLX_LOAD);
 }
-void keyhook(mlx_key_data_t keydata, void *param)
+void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
@@ -58,13 +58,11 @@ void keyhook(mlx_key_data_t keydata, void *param)
 		{
 			if (game->map.collected == game->map.collectibles)
 			{
-				ft_putstr_fd("U collected all your mewmories! Congrats! ฅᨐฅ",
-					1);
+				choose_game_msg(game, GAME_SUCCESS);
 				EXIT_SUCCESS;
 			}
 			else
-				ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^",
-					1);
+				choose_game_msg(game, GAME_MISSING_COL);
 		}
 	}
 }
@@ -73,11 +71,9 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n",
-				2));
+		return (choose_err_msg(game, ERR_ARGS));
 	if (check_extension(argv[1]))
-		return (ft_putstr_fd("U sure the file has a valid extension? ฅᨐฅ\n",
-				2));
+		return (choose_err_msg(game, ERR_MAP_EXT));
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
 	init_MLX42(&game);

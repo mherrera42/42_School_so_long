@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/07 17:14:57 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:47:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path, int x, int y)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		ft_putstr_fd("Hey! Where is the texture? There's newo texture! ^╥˕╥^ ", 2);
+		ft_putstr_fd("Hey! Where is the texture? There's newo texture! ^╥˕╥^ ",
+			2);
 		mlx_terminate(game->mlx);
 		exit(EXIT_FAILURE);
 	}
