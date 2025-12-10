@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 16:33:25 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 20:05:13 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,3 +92,55 @@ int	read_map(t_game *game, char *filename)
 	close(fd);
 	return (EXIT_SUCCESS);
 }
+
+
+/*
+IDEA: GUARDAR POSICION DEL JUGADOR
+int	read_map(t_game *game, char *filename)
+{
+	int		fd;
+	int		y;
+	char	*line;
+
+	y = 0;
+	line = NULL;
+	
+	// 1. Inicializar memoria
+	if (init_map_memory(game) == EXIT_FAILURE)
+		return (throw_error(game, ERR_MALLOC, 0, NULL, 0));
+	
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (throw_error(game, ERR_FD, fd, NULL, 0));
+
+	// 2. Leer y procesar líneas
+	while (y < game->map.height)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (process_map_line(game, line, y, fd) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+		free(line);
+		y++;
+	}
+	game->map.map[y] = NULL;
+	close(fd); // Cerramos el archivo porque ya terminamos de leer
+
+	// ---------------------------------------------------------
+	// <--- NUEVO BLOQUE: Validar el camino (Flood Fill)
+	// ---------------------------------------------------------
+	
+	// En este punto el mapa ya existe en memoria y P, C, E están contados.
+	if (check_valid_path(game) == EXIT_FAILURE)
+	{
+		// ¡IMPORTANTE! 
+		// Como el mapa ya se creó con malloc, si el camino es inválido
+		// hay que liberarlo antes de salir para no dejar leaks.
+		free_matrix(game->map.map, game->map.height);
+		return (EXIT_FAILURE); 
+	}
+
+	return (EXIT_SUCCESS);
+}
+*/

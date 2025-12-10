@@ -6,21 +6,26 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 17:08:53 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:47:58 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// partially frees the copy of the map
-void	partial_free(t_game *game, int y)
+// Esta función libera 'count' filas y luego el contenedor
+void	free_map(char **map, int n_lines)
 {
-	while (y >= 0)
+	int	y;
+
+	if (!map)
+		return ;
+	y = 0;
+	while (y < n_lines)
 	{
-		free(game->map.map[y]);
-		y--;
+		free(map[y]);
+		y++;
 	}
-	free(game->map.map);
+	free(map);
 }
 
 // copies the map to work with floodfill
@@ -36,49 +41,61 @@ char	**copy_map(t_game *game)
 	while (y < game->map.height)
 	{
 		map_copy[y] = malloc((game->map.width + 1) * sizeof(char));
-		if (!map_copy[y])
+		if (!map_copy[y]) 
 		{
-			partial_free(game, y);
+			free_map(map_copy, y);
 			return (NULL);
 		}
 		ft_strlcpy(map_copy[y], game->map.map[y], game->map.width + 1);
 		y++;
 	}
-	map_copy[y] = '\0';
+	map_copy[y] = NULL;
 	return (map_copy);
 }
 
 // checks all the positions around the character
-void	flood_fill(t_game *game, int x, int y)
+void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= game->map.width || y >= game->map.height)
 		return ;
-	if (game->map.map[y][x] == '1' || game->map.map[y][x] == 'V')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'V')
 		return ;
-	if (game->map.map[y][x] == 'C')
-	{
+	if (map_copy[y][x] == 'C')
 		game->map.collect_reach++;
-		return ;
-	}
-	if (game->map.map[y][x] == 'E')
-		game->map.exit_reach = 1;
-	game->map.map[y][x] = 'V';
-	flood_fill(game, x + 1, y);
-	flood_fill(game, x - 1, y + 1);
-	flood_fill(game, x, y + 1);
-	flood_fill(game, x, y - 1);
+	if (map_copy[y][x] == 'E')
+		game->map.exit = 1;
+	map_copy[y][x] = 'V';
+	flood_fill(game, map_copy, x + 1, y);
+	flood_fill(game, map_copy, x - 1, y);
+	flood_fill(game, map_copy, x, y + 1);
+	flood_fill(game, map_copy, x, y - 1);
 }
+
+// checks that there's a valid path to the exit and all the collectibles in the map
 int	check_valid_path(t_game *game)
 {
-	char	**map_copy;
+	char **map_copy;
 
+	game->map.collect_reach = 0;
+	game->map.exit = 0;
 	map_copy = copy_map(game);
-	//llamar a floodfill para recorrer todo el mapa desde la pos del personaje
-	flood_fill(game, game->map.player_x, game->map.player_y);
-	//chequear que todos los coleccionables puedan alcanzarse
-	if(game->map.collectibles == game->map.collect_reach)
-		//camino ok
-	//chequear que la salida sea alcanzable
-	if(game->map.exit == 1)
-		//ok
+	if (!map_copy)
+	{
+		choose_err_msg(game, ERR_MALLOC);
+		return (EXIT_FAILURE); 
+	}
+
+	flood_fill(game, map_copy, game->map.player_x, game->map.player_y);
+	free_map(map_copy, game->map.height);
+	if (game->map.collectibles != game->map.collect_reach)
+	{
+		choose_err_msg(game, ERR_MAP_FORMAT);
+		return (EXIT_FAILURE);
+	}
+	if (game->map.exit == 0)
+	{
+		choose_err_msg(game, ERR_MAP_FORMAT);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }

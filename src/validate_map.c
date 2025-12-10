@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 16:52:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 20:04:58 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,29 @@ int	check_map_char(t_game *game, char *line)
 	}
 	return (EXIT_SUCCESS);
 }
+
+/*
+IDEA: GUARDAR POSICIÓN DEL JUGADOR
+int check_map_char(t_game *game, char *line, int current_y)
+{
+    int x = 0;
+    while (line[x])
+    {
+        // ... chequeos de caracteres válidos ...
+
+        if (line[x] == 'P')
+        {
+            game->map.player_x = x;          // Guardamos X
+            game->map.player_y = current_y;  // Guardamos Y (la fila actual)
+            game->map.player_count++;
+        }
+        else if (line[x] == 'C')
+            game->map.collectibles++;
+        else if (line[x] == 'E')
+            game->map.exit_count++;
+            
+        x++;
+    }
+    return (EXIT_SUCCESS);
+}
+*/

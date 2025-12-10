@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 17:35:10 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:55:07 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	choose_err_msg(t_game *game, t_msg code)
 		ft_putstr_fd("Mawp has an incorrect formawt! ^╥˕╥^\n", 2);
 	if (code == ERR_MLX_LOAD)
 		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
+	return (EXIT_FAILURE);
 }
 //choose game message from enum
 void	choose_game_msg(t_game *game, t_msg code)
