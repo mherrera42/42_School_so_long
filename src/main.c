@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/09 13:33:02 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:32:34 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (choose_err_msg(game, ERR_ARGS));
+		return (choose_err_msg(&game, ERR_ARGS));
 	if (check_extension(argv[1]))
-		return (choose_err_msg(game, ERR_MAP_EXT));
+		return (choose_err_msg(&game, ERR_MAP_EXT));
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
 	init_MLX42(&game);

@@ -6,13 +6,13 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/09 13:46:37 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:33:25 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-// checks the format of the map 
+// checks the format of the map
 static int	format_map(t_game *game, char *line, int fd, int width_prev)
 {
 	char	*line_end_pos;
@@ -55,6 +55,7 @@ int	measure_map(t_game *game, char *filename)
 }
 
 // reads the map, allocating memory for it, and saving it in a matrix
+// podria llamar una funcion de liberacion parcial aqui, y usar en map
 int	read_map(t_game *game, char *filename)
 {
 	int		fd;

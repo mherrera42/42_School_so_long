@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:24 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 12:54:06 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:38:59 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,63 +111,3 @@ char	*get_next_line(int fd)
 	rem_chunk = ft_update_remainder(rem_chunk);
 	return (next_line);
 }
-/*int main(void)
-{
-	int fd;
-	char *next_line;
-	int	i;
-
-	i=10;
-	fd = 0;//open ("text.txt", O_RDONLY);
-	while (i)
-	{
-		next_line = get_next_line(fd);
-		printf("%s", next_line);
-		if(!next_line)
-			printf("\n");
-		free(next_line);
-		i--;
-	}
-	close (fd);
-}*/
-/*int main(int argc, char **argv)
-{
-	if(argc != 2)
-		return(0);
-	int fd;
-	char	*line;
-
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	if(line)
-		free(line);
-	close(fd);
-	return(0);
-}*/
-
-/*int main (int argc, char **argv)
-{
-	int fd;
-	char *next_line;
-
-	if(argc == 2)
-	{
-		fd = open(argv[1], O_RDONLY);
-		next_line = get_next_line (fd);
-
-		while(next_line)
-		{
-			printf("%s" , next_line);
-			free(next_line);
-			next_line = get_next_line (fd);
-		}
-		close (fd);
-		return (0);
-	}
-}*/

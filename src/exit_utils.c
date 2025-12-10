@@ -6,17 +6,12 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/09 13:36:34 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:35:10 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-//normal putstr
-void	ft_putstr_fd(char *msg, int fd)
-{
-	write(fd, msg, ft_strlen(msg));
-}
 //choose error message from enum
 int	choose_err_msg(t_game *game, t_msg code)
 {
@@ -39,10 +34,10 @@ int	choose_err_msg(t_game *game, t_msg code)
 		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
 }
 //choose game message from enum
-int	choose_game_msg(t_game *game, t_msg code)
+void	choose_game_msg(t_game *game, t_msg code)
 {
 	if (code == GAME_SUCCESS)
-		ft_putstr_fd("U collected all your mewmories! Congrats! ฅᨐฅ", 1);
+		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ", 1);
 	if (code == GAME_MISSING_COL)
 		ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^",
 			1);

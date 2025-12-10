@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:14:24 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/02 12:55:08 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/10 16:39:13 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-// Intentar hacer str_join sin dependencias de cpy y cat
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
