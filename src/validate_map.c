@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 20:04:58 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:35:00 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_n_and_quad(t_game *game, int fd, int width_prev, char *line)
 }
 
 // checks if the char in the given map are valid
-int	check_map_char(t_game *game, char *line)
+int	check_map_char(t_game *game, char *line, int y)
 {
 	int x;
 
@@ -44,6 +44,12 @@ int	check_map_char(t_game *game, char *line)
 		if (line[x] != '1' && line[x] != '0' && line[x] != 'P' && line[x] != 'C'
 			&& line[x] != 'E')
 			return (EXIT_FAILURE);
+		else if (line[x] == 'P')
+		{
+			game->map.player_x = x;
+			game->map.player_y = y;
+			game->map.player ++;
+		}
 		else if (line[x] == 'C')
 			game->map.collectibles++;
 		x++;

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 17:04:30 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:39:01 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_map
 	char **map;       // Matriz en la que se guardará el mapa
 	int width;        // Ancho del mapa
 	int height;       // Alto del mapa
+	int	player;       // Numero de jugadores
 	int player_x;     // Posición del player en x
 	int player_y;     // Posición del player en y
 	int exit;         // Numero de salidas (debe haber 1)
@@ -92,7 +93,7 @@ int				read_map(t_game *game, char *filename);
 int				check_extension(char *filename);
 int				check_n_and_quad(int fd, int width, int width_prev, char *line,
 					t_map *map);
-int				check_map_char(t_game *game, char *line);
+int				check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
 void			partial_free(t_game *game, int y);
