@@ -6,14 +6,29 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 19:55:07 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:17:29 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+// this function frees n lines, and then the matrix
+void	free_map(char **map, int n_lines)
+{
+	int	y;
+
+	if (!map)
+		return ;
+	y = 0;
+	while (y < n_lines)
+	{
+		free(map[y]);
+		y++;
+	}
+	free(map);
+}
 //choose error message from enum
-int	choose_err_msg(t_game *game, t_msg code)
+int	choose_err_msg(t_msg code)
 {
 	if (code == ERR_ARGS)
 		ft_putstr_fd("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n",
@@ -35,21 +50,28 @@ int	choose_err_msg(t_game *game, t_msg code)
 	return (EXIT_FAILURE);
 }
 //choose game message from enum
-void	choose_game_msg(t_game *game, t_msg code)
+int	choose_game_msg(t_msg code)
 {
 	if (code == GAME_SUCCESS)
 		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ", 1);
+		
 	if (code == GAME_MISSING_COL)
+	{
 		ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^",
 			1);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
+//maximo 4 variables como parametro 
 //throw error and choose behavior
+/*
 int	throw_error(t_game *game, t_msg code, int fd, char *line, int free_mode)
 {
 	int	y;
-
 	y = -1;
-	choose_err_msg(game, code);
+	choose_err_msg(code);
+	//funcion de liberacion parcial y quito fd y line
 	if (line)
 		free(line);
 	if (fd >= 0)
@@ -66,3 +88,4 @@ int	throw_error(t_game *game, t_msg code, int fd, char *line, int free_mode)
 	}
 	return (EXIT_FAILURE);
 }
+*/

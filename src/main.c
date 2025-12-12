@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 19:56:58 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:59:48 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ void	init_game(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game->mlx)
-		choose_err_msg(game, ERR_MLX_LOAD);
+		choose_err_msg(ERR_MLX_LOAD);
 }
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-	// Hay que comprobar si en la posición a la que queremos ir hay
-	// un 0 o un 1, para evitar atravesar las paredes
-	// No necesito usar las instancias para mover al personaje
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE)
@@ -57,12 +54,9 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		else if (game->map.player_x == 'E' && game->map.player_y == 'E')
 		{
 			if (game->map.collected == game->map.collectibles)
-			{
-				choose_game_msg(game, GAME_SUCCESS);
-				EXIT_SUCCESS;
-			}
+				choose_game_msg(GAME_SUCCESS);
 			else
-				choose_game_msg(game, GAME_MISSING_COL);
+				choose_game_msg(GAME_MISSING_COL);
 		}
 	}
 }
@@ -71,13 +65,13 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (choose_err_msg(&game, ERR_ARGS));
+		return (choose_err_msg(ERR_ARGS));
 	if (check_extension(argv[1]) == EXIT_FAILURE)
-		return (choose_err_msg(&game, ERR_MAP_EXT));
+		return (choose_err_msg(ERR_MAP_EXT));
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
 	if (check_valid_path(&game) == EXIT_FAILURE)
-		return (choose_err_msg(&game, ERR_MAP_FORMAT));
+		return (choose_err_msg(ERR_MAP_FORMAT));
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }

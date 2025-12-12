@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/11 15:39:01 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:31:33 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ void			init_game(t_game *game);
 void			keyhook(mlx_key_data_t keydata, void *param);
 
 // exit_utils.c
-int				choose_err_msg(t_game *game, t_msg code);
-int				choose_game_msg(t_game *game, t_msg code);
-int				throw_error(t_game *game, t_msg code, int fd, char *line,
-					int free_mode);
+void			free_map(char **map, int n_lines);
+int				choose_err_msg(t_msg code);
+int				choose_game_msg(t_msg code);
+/* int				throw_error(t_game *game, t_msg code, int fd, char *line,
+					int free_mode); */
 
 // general_utils.c
 void			ft_putstr_fd(char *msg, int fd);
@@ -91,14 +92,12 @@ int				read_map(t_game *game, char *filename);
 
 // validate_map.c
 int				check_extension(char *filename);
-int				check_n_and_quad(int fd, int width, int width_prev, char *line,
-					t_map *map);
-int				check_map_char(t_game *game, char *line, int y);
+int				check_is_quad(t_game *game, int width_prev);
+ int			check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
-void			partial_free(t_game *game, int y);
 char			**copy_map(t_game *game);
-void			flood_fill(t_game *game, int x, int y);
+void			flood_fill(t_game *game, char **map_copy, int x, int y);
 int				check_valid_path(t_game *game);
 
 // render_map.c

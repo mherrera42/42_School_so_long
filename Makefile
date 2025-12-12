@@ -5,9 +5,10 @@ NAME		= so_long
 
 # Source Files
 SRC_FILES	= main.c \
-			  map_utils.c \
+			  general_utils.c \
 			  exit_utils.c \
 			  validate_map.c \
+			  validate_path.c \
 			  read_map.c \
 			  render_map.c \
 			  textures.c \

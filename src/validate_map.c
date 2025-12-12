@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/11 15:35:00 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:38:06 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	check_extension(char *filename)
 }
 
 // checks if the map is a quad or a rectangle
-int	check_n_and_quad(t_game *game, int fd, int width_prev, char *line)
+int	check_is_quad(t_game *game, int width_prev)
 {
-	int	x;
-
 	if (width_prev && width_prev != game->map.width)
-		return (throw_error(game, ERR_MAP_QUAD, fd, line, 1));
+	{
+		//liberar memoria
+		return (choose_err_msg(ERR_MAP_QUAD));
+		ft_putstr_fd("UN ERROR VIENE DE CHECK QUAD \n", 1);
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -52,33 +54,9 @@ int	check_map_char(t_game *game, char *line, int y)
 		}
 		else if (line[x] == 'C')
 			game->map.collectibles++;
+		else if (line[x] == 'E')
+			game->map.exit++;
 		x++;
 	}
 	return (EXIT_SUCCESS);
 }
-
-/*
-IDEA: GUARDAR POSICIÓN DEL JUGADOR
-int check_map_char(t_game *game, char *line, int current_y)
-{
-    int x = 0;
-    while (line[x])
-    {
-        // ... chequeos de caracteres válidos ...
-
-        if (line[x] == 'P')
-        {
-            game->map.player_x = x;          // Guardamos X
-            game->map.player_y = current_y;  // Guardamos Y (la fila actual)
-            game->map.player_count++;
-        }
-        else if (line[x] == 'C')
-            game->map.collectibles++;
-        else if (line[x] == 'E')
-            game->map.exit_count++;
-            
-        x++;
-    }
-    return (EXIT_SUCCESS);
-}
-*/

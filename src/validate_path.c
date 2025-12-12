@@ -6,27 +6,11 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 19:47:58 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:17:19 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-// Esta función libera 'count' filas y luego el contenedor
-void	free_map(char **map, int n_lines)
-{
-	int	y;
-
-	if (!map)
-		return ;
-	y = 0;
-	while (y < n_lines)
-	{
-		free(map[y]);
-		y++;
-	}
-	free(map);
-}
 
 // copies the map to work with floodfill
 char	**copy_map(t_game *game)
@@ -81,7 +65,7 @@ int	check_valid_path(t_game *game)
 	map_copy = copy_map(game);
 	if (!map_copy)
 	{
-		choose_err_msg(game, ERR_MALLOC);
+		choose_err_msg(ERR_MALLOC);
 		return (EXIT_FAILURE); 
 	}
 
@@ -89,12 +73,12 @@ int	check_valid_path(t_game *game)
 	free_map(map_copy, game->map.height);
 	if (game->map.collectibles != game->map.collect_reach)
 	{
-		choose_err_msg(game, ERR_MAP_FORMAT);
+		choose_err_msg(ERR_MAP_FORMAT);
 		return (EXIT_FAILURE);
 	}
 	if (game->map.exit == 0)
 	{
-		choose_err_msg(game, ERR_MAP_FORMAT);
+		choose_err_msg(ERR_MAP_FORMAT);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
