@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/12 15:59:48 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:28:49 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	init_MLX42(t_game *game)
 {
-	init_game(game);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+	if (!game->mlx)
+		show_err_msg(ERR_MLX_LOAD);
 	init_textures(game);
 	render_map(game);
-	mlx_key_hook(game->mlx, &keyhook, &game);
+	mlx_key_hook(game->mlx, &keyhook, game);
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->player);
 	mlx_terminate(game->mlx);
@@ -25,9 +27,17 @@ void	init_MLX42(t_game *game)
 
 void	init_game(t_game *game)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
-	if (!game->mlx)
-		choose_err_msg(ERR_MLX_LOAD);
+	game->map.map = NULL;
+	game->map.width = 0;
+	game->map.height = 0;
+	game->map.player = 0;
+	game->map.player_x = 0;
+	game->map.player_y = 0;
+	game->map.exit = 0;
+	game->map.collectibles = 0;
+	game->map.collect_reach = 0;
+	game->map.collected = 0;
+	game->mlx = NULL;
 }
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
@@ -54,9 +64,9 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		else if (game->map.player_x == 'E' && game->map.player_y == 'E')
 		{
 			if (game->map.collected == game->map.collectibles)
-				choose_game_msg(GAME_SUCCESS);
+				show_game_msg(GAME_SUCCESS);
 			else
-				choose_game_msg(GAME_MISSING_COL);
+				show_game_msg(GAME_MISSING_COL);
 		}
 	}
 }
@@ -65,13 +75,14 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return (choose_err_msg(ERR_ARGS));
-	if (check_extension(argv[1]) == EXIT_FAILURE)
-		return (choose_err_msg(ERR_MAP_EXT));
+		return (show_err_msg(ERR_ARGS));
+	if (check_extension(argv[1]) == 1)
+		return (show_err_msg(ERR_MAP_EXT));
+	init_game(&game);
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
 	if (check_valid_path(&game) == EXIT_FAILURE)
-		return (choose_err_msg(ERR_MAP_FORMAT));
+		return (show_err_msg(ERR_MAP_FORMAT));
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }

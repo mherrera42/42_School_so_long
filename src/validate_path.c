@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/12 16:17:19 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/13 21:11:51 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,49 +36,46 @@ char	**copy_map(t_game *game)
 	map_copy[y] = NULL;
 	return (map_copy);
 }
-
 // checks all the positions around the character
 void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= game->map.width || y >= game->map.height)
 		return ;
-	if (map_copy[y][x] == '1' || map_copy[y][x] == 'V')
+	if (map_copy[y][x] == '1')
 		return ;
 	if (map_copy[y][x] == 'C')
 		game->map.collect_reach++;
 	if (map_copy[y][x] == 'E')
+	{
+		// printf("Salida encontrada");
 		game->map.exit = 1;
-	map_copy[y][x] = 'V';
+		//return ;
+	}
+	map_copy[y][x] = '0';
 	flood_fill(game, map_copy, x + 1, y);
 	flood_fill(game, map_copy, x - 1, y);
 	flood_fill(game, map_copy, x, y + 1);
 	flood_fill(game, map_copy, x, y - 1);
 }
-
 // checks that there's a valid path to the exit and all the collectibles in the map
 int	check_valid_path(t_game *game)
 {
 	char **map_copy;
 
 	game->map.collect_reach = 0;
-	game->map.exit = 0;
 	map_copy = copy_map(game);
 	if (!map_copy)
 	{
-		choose_err_msg(ERR_MALLOC);
+		show_err_msg(ERR_MALLOC);
 		return (EXIT_FAILURE); 
 	}
-
 	flood_fill(game, map_copy, game->map.player_x, game->map.player_y);
 	free_map(map_copy, game->map.height);
 	if (game->map.collectibles != game->map.collect_reach)
-	{
-		choose_err_msg(ERR_MAP_FORMAT);
 		return (EXIT_FAILURE);
-	}
 	if (game->map.exit == 0)
 	{
-		choose_err_msg(ERR_MAP_FORMAT);
+		printf("No hay salida\n");
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

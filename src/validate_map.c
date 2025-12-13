@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/12 16:38:06 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/13 20:28:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,29 @@ int	check_extension(char *filename)
 
 	extension = ft_strrchr(filename, '.');
 	if (!extension || ft_strncmp(extension, ".ber", 5) != 0)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (1);
+	return (0);
 }
+// checks the format of the map
+void	format_map(char *line)
+{
+	char	*line_end_pos;
 
+	line_end_pos = ft_strrchr(line, '\n');
+	if (line_end_pos)
+		*line_end_pos = '\0';
+}
 // checks if the map is a quad or a rectangle
 int	check_is_quad(t_game *game, int width_prev)
 {
 	if (width_prev && width_prev != game->map.width)
 	{
-		//liberar memoria
-		return (choose_err_msg(ERR_MAP_QUAD));
-		ft_putstr_fd("UN ERROR VIENE DE CHECK QUAD \n", 1);
+		//checkear esta liberacion
+		free_map(game->map.map, game->map.height);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
-
 // checks if the char in the given map are valid
 int	check_map_char(t_game *game, char *line, int y)
 {
@@ -55,7 +62,10 @@ int	check_map_char(t_game *game, char *line, int y)
 		else if (line[x] == 'C')
 			game->map.collectibles++;
 		else if (line[x] == 'E')
+		{
+			printf("Salida encontrada");
 			game->map.exit++;
+		}
 		x++;
 	}
 	return (EXIT_SUCCESS);

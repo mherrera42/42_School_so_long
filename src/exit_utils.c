@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/12 16:17:29 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/13 16:21:30 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_map(char **map, int n_lines)
 	free(map);
 }
 //choose error message from enum
-int	choose_err_msg(t_msg code)
+int	show_err_msg(t_msg code)
 {
 	if (code == ERR_ARGS)
 		ft_putstr_fd("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n",
@@ -50,7 +50,7 @@ int	choose_err_msg(t_msg code)
 	return (EXIT_FAILURE);
 }
 //choose game message from enum
-int	choose_game_msg(t_msg code)
+int	show_game_msg(t_msg code)
 {
 	if (code == GAME_SUCCESS)
 		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ", 1);

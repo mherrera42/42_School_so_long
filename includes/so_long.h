@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/12 16:31:33 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/13 19:26:18 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ typedef enum e_msg
 // map struct
 typedef struct s_map
 {
-	char **map;       // Matriz en la que se guardará el mapa
-	int width;        // Ancho del mapa
-	int height;       // Alto del mapa
-	int	player;       // Numero de jugadores
-	int player_x;     // Posición del player en x
-	int player_y;     // Posición del player en y
-	int exit;         // Numero de salidas (debe haber 1)
-	//int exit_x;       // Posición de la salida en x
-	//int exit_y;       // Posición de la salida en y
+	char **map;   // Matriz en la que se guardará el mapa
+	int width;    // Ancho del mapa
+	int height;   // Alto del mapa
+	int player;   // Numero de jugadores
+	int player_x; // Posición del player en x
+	int player_y; // Posición del player en y
+	int exit;     // Numero de salidas (debe haber 1)
+	// int	exit_x;       // Posición de la salida en x
+	// int	exit_y;       // Posición de la salida en y
 	int collectibles; // Nº de coleccionables,
-	int collect_reach;
-	int collected;    // Coleccionables obtenidos
+	int	collect_reach;
+	int collected; // Coleccionables obtenidos
 }				t_map;
 
 // game struct
@@ -65,6 +65,7 @@ typedef struct s_game
 	mlx_image_t	*collect;
 	mlx_image_t	*exit;
 	t_map		map;
+	// t_msg		msg;
 }				t_game;
 
 // main.c
@@ -75,8 +76,8 @@ void			keyhook(mlx_key_data_t keydata, void *param);
 
 // exit_utils.c
 void			free_map(char **map, int n_lines);
-int				choose_err_msg(t_msg code);
-int				choose_game_msg(t_msg code);
+int				show_err_msg(t_msg code);
+int				show_game_msg(t_msg code);
 /* int				throw_error(t_game *game, t_msg code, int fd, char *line,
 					int free_mode); */
 
@@ -92,8 +93,9 @@ int				read_map(t_game *game, char *filename);
 
 // validate_map.c
 int				check_extension(char *filename);
+void			format_map(char *line);
 int				check_is_quad(t_game *game, int width_prev);
- int			check_map_char(t_game *game, char *line, int y);
+int				check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
 char			**copy_map(t_game *game);
