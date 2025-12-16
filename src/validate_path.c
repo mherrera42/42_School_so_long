@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/13 21:11:51 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:24:03 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= game->map.width || y >= game->map.height)
 		return ;
-	if (map_copy[y][x] == '1')
+	if (map_copy[y][x] == '1' || map_copy[y][x] == 'F')
 		return ;
 	if (map_copy[y][x] == 'C')
 		game->map.collect_reach++;
 	if (map_copy[y][x] == 'E')
 	{
 		// printf("Salida encontrada");
-		game->map.exit = 1;
+		game->map.exit++;
 		//return ;
 	}
-	map_copy[y][x] = '0';
+	map_copy[y][x] = 'F'; 
 	flood_fill(game, map_copy, x + 1, y);
 	flood_fill(game, map_copy, x - 1, y);
 	flood_fill(game, map_copy, x, y + 1);
@@ -73,9 +73,9 @@ int	check_valid_path(t_game *game)
 	free_map(map_copy, game->map.height);
 	if (game->map.collectibles != game->map.collect_reach)
 		return (EXIT_FAILURE);
-	if (game->map.exit == 0)
+	if (game->map.exit != 1)
 	{
-		printf("No hay salida\n");
+		show_err_msg(ERR_MAP_FORMAT);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

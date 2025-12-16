@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/13 20:28:16 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:10:15 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	check_map_char(t_game *game, char *line, int y)
 		else if (line[x] == 'C')
 			game->map.collectibles++;
 		else if (line[x] == 'E')
-		{
-			printf("Salida encontrada");
 			game->map.exit++;
-		}
 		x++;
 	}
 	return (EXIT_SUCCESS);

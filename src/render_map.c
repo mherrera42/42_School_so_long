@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/09 13:47:04 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:14:09 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	render_map(t_game *game)
 
 	y = 0;
 	x = 0;
+	printf("Entro en render map");
 	while (y < game->map.height)
 	{
 		while (x < game->map.width)

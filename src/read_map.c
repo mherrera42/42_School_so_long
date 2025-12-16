@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/13 21:11:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:37:39 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	measure_map(t_game *game, char *filename)
 	if (game->map.height <= 0 || game->map.width <= 0)
 		return (show_err_msg(ERR_MAP_SMALL));
 	return (EXIT_SUCCESS);
+	
 }
 // allocates memory for the map matrix
 static int	alloc_map_matrix(t_game	*game)
