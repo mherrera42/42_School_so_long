@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/16 19:14:09 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/17 20:35:38 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ void	render_map(t_game *game)
 	int	x;
 
 	y = 0;
-	x = 0;
-	printf("Entro en render map");
+	
 	while (y < game->map.height)
 	{
+		//it must be restart for every line
+		x = 0;
 		while (x < game->map.width)
 		{
+			mlx_image_to_window(game->mlx, game->floor, x *TILE_SIZE, y *TILE_SIZE);
 			if (game->map.map[y][x] == '0')
 				mlx_image_to_window(game->mlx, game->floor, (x * TILE_SIZE), (y
 						* TILE_SIZE));
 			if (game->map.map[y][x] == '1')
-				mlx_image_to_window(game->mlx, game->walls, (x * TILE_SIZE), (y
-						* TILE_SIZE));
+				mlx_image_to_window(game->mlx, game->walls, x * TILE_SIZE, y
+						* TILE_SIZE);
 			else if (game->map.map[y][x] == 'P' || game->map.map[y][x] == 'C'
 				|| game->map.map[y][x] == 'E')
 				render_assets(game, x, y);
