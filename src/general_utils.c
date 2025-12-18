@@ -6,11 +6,34 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/10 16:37:26 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/18 18:37:24 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+// just for debugging
+void	ft_putnbr_fd(int n, int fd)
+{
+	int	nbr;
+
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = n * (-1);
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	nbr = (n % 10) + '0';
+	write(fd, &nbr, 1);
+}
 
 //normal putstr
 void	ft_putstr_fd(char *msg, int fd)

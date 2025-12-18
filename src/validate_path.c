@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/16 18:24:03 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:00:54 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ void	flood_fill(t_game *game, char **map_copy, int x, int y)
 	if (map_copy[y][x] == 'C')
 		game->map.collect_reach++;
 	if (map_copy[y][x] == 'E')
-	{
-		// printf("Salida encontrada");
-		game->map.exit++;
-		//return ;
-	}
+		game->map.exit_reach++;
 	map_copy[y][x] = 'F'; 
 	flood_fill(game, map_copy, x + 1, y);
 	flood_fill(game, map_copy, x - 1, y);
@@ -62,7 +58,6 @@ int	check_valid_path(t_game *game)
 {
 	char **map_copy;
 
-	game->map.collect_reach = 0;
 	map_copy = copy_map(game);
 	if (!map_copy)
 	{
@@ -73,7 +68,7 @@ int	check_valid_path(t_game *game)
 	free_map(map_copy, game->map.height);
 	if (game->map.collectibles != game->map.collect_reach)
 		return (EXIT_FAILURE);
-	if (game->map.exit != 1)
+	if (game->map.exit_reach != 1)
 	{
 		show_err_msg(ERR_MAP_FORMAT);
 		return (EXIT_FAILURE);

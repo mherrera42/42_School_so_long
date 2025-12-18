@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/13 19:26:18 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:01:47 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ typedef struct s_map
 	int player_x; // Posición del player en x
 	int player_y; // Posición del player en y
 	int exit;     // Numero de salidas (debe haber 1)
-	// int	exit_x;       // Posición de la salida en x
-	// int	exit_y;       // Posición de la salida en y
+	int	exit_reach; //Nº de salidas alcanzables 
 	int collectibles; // Nº de coleccionables,
-	int	collect_reach;
+	int	collect_reach; //Nº de coleccionables alcanzables
 	int collected; // Coleccionables obtenidos
 }				t_map;
 
@@ -82,6 +81,7 @@ int				show_game_msg(t_msg code);
 					int free_mode); */
 
 // general_utils.c
+void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *msg, int fd);
 size_t			ft_strlen(const char *s);
 char			*ft_strrchr(const char *s, int c);
@@ -107,8 +107,7 @@ void			render_map(t_game *game);
 void			render_assets(t_game *game, int x, int y);
 
 // textures.c
-void			load_texture(t_game *game, mlx_image_t **img, char *path, int x,
-					int y);
+void			load_texture(t_game *game, mlx_image_t **img, char *path);
 void			init_textures(t_game *game);
 
 #endif

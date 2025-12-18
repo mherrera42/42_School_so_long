@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/16 18:10:45 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/18 19:38:06 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 void	init_MLX42(t_game *game)
 {
-	printf("ENTRA EN INIT\n");
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game->mlx)
 		show_err_msg(ERR_MLX_LOAD);
 	init_textures(game);
 	render_map(game);
-	printf("caca\n");
 	mlx_key_hook(game->mlx, &keyhook, game);
 	mlx_loop(game->mlx);
 	mlx_delete_image(game->mlx, game->player);
 	mlx_terminate(game->mlx);
-	printf("salgo de INIT\n");
 }
 
 void	init_game(t_game *game)
@@ -37,6 +34,7 @@ void	init_game(t_game *game)
 	game->map.player_x = 0;
 	game->map.player_y = 0;
 	game->map.exit = 0;
+	game->map.exit_reach = 0;
 	game->map.collectibles = 0;
 	game->map.collect_reach = 0;
 	game->map.collected = 0;
@@ -84,6 +82,7 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
+	ft_putstr_fd("\n", 1);
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }
