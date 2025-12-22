@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/22 14:46:51 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/22 17:49:54 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,54 +38,14 @@ void	init_game(t_game *game)
 	game->map.collectibles = 0;
 	game->map.collect_reach = 0;
 	game->map.collected = 0;
+	game->map.moves = 0;
 	game->mlx = NULL;
 }
-
-//HACER OTRA FUNCION CON LA QUE IR GUARDANDO LA POSICION ACTUAL Y LA NUEVA POSICION, E IR 
-//AVANZANDOLAS. AQUI SOLO ESTOY MOVIENDO LAS INSTANCIAS
-
-// Problema de logica importante: Intento mover la imagen antes de comprobar si hay una
-//pared, y las comrpobaciones no tienen sentido. Se comprueba una coordenada con el nº 1,
-// con el contenido del mapa.
-
-/* void	keyhook(mlx_key_data_t keydata, void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE)
-			mlx_close_window(game->mlx);
-		if (game->map.player_x != 1 && game->map.player_y != 1)
-		{
-			if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-				game->player->instances[0].y -= TILE_SIZE;
-			else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-				game->player->instances[0].y += TILE_SIZE;
-			else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-				game->player->instances[0].x += TILE_SIZE;
-			else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-				game->player->instances[0].x -= TILE_SIZE;
-		}
-		else if (game->map.player_x == 'C' && game->map.player_y == 'C')
-			game->map.collected++;
-		else if (game->map.player_x == 'E' && game->map.player_y == 'E')
-		{
-			if (game->map.collected == game->map.collectibles)
-				show_game_msg(GAME_SUCCESS);
-			else
-				show_game_msg(GAME_MISSING_COL);
-		}
-	}
-} */
-
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE)
