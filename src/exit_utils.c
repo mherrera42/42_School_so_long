@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/13 16:21:30 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:54:21 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	show_game_msg(t_msg code)
 			1);
 		return (EXIT_FAILURE);
 	}
+	if (code == GAME_MOVES)
+		ft_putstr_fd("Current mewvements ฅᨐฅ : ", 1);
 	return (EXIT_SUCCESS);
 }
 //maximo 4 variables como parametro 

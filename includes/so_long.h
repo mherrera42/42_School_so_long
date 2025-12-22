@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 19:01:47 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:47:29 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define HEIGHT 1080
 # define TILE_SIZE 64
 
-# include "MLX42/include/MLX42/MLX42.h"
+# include "MLX42/include/MLX42/MLX42.h"	
 # include "get_next_line.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -28,6 +28,7 @@ typedef enum e_msg
 {
 	GAME_SUCCESS = 0,
 	GAME_MISSING_COL,
+	GAME_MOVES,
 	ERR_ARGS,
 	ERR_FD,
 	ERR_MALLOC,
@@ -52,6 +53,7 @@ typedef struct s_map
 	int collectibles; // Nº de coleccionables,
 	int	collect_reach; //Nº de coleccionables alcanzables
 	int collected; // Coleccionables obtenidos
+	int	moves;
 }				t_map;
 
 // game struct
@@ -109,5 +111,8 @@ void			render_assets(t_game *game, int x, int y);
 // textures.c
 void			load_texture(t_game *game, mlx_image_t **img, char *path);
 void			init_textures(t_game *game);
+
+// player_events.c
+void	move_player(t_game *game, int y, int x);
 
 #endif

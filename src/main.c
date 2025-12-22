@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 19:38:06 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:46:51 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ void	init_game(t_game *game)
 	game->map.collected = 0;
 	game->mlx = NULL;
 }
-void	keyhook(mlx_key_data_t keydata, void *param)
+
+//HACER OTRA FUNCION CON LA QUE IR GUARDANDO LA POSICION ACTUAL Y LA NUEVA POSICION, E IR 
+//AVANZANDOLAS. AQUI SOLO ESTOY MOVIENDO LAS INSTANCIAS
+
+// Problema de logica importante: Intento mover la imagen antes de comprobar si hay una
+//pared, y las comrpobaciones no tienen sentido. Se comprueba una coordenada con el nº 1,
+// con el contenido del mapa.
+
+/* void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
@@ -70,7 +78,29 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 				show_game_msg(GAME_MISSING_COL);
 		}
 	}
+} */
+
+void	keyhook(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{
+		if (keydata.key == MLX_KEY_ESCAPE)
+			mlx_close_window(game->mlx);
+		if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+			move_player(game, -1, 0);
+		else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+			move_player(game, 1, 0);
+		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+			move_player(game, 0, 1);
+		else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+			move_player(game, 0, -1);
+	}
 }
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -82,7 +112,6 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	measure_map(&game, argv[1]);
 	read_map(&game, argv[1]);
-	ft_putstr_fd("\n", 1);
 	init_MLX42(&game);
 	return (EXIT_SUCCESS);
 }

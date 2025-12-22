@@ -12,6 +12,7 @@ SRC_FILES	= main.c \
 			  read_map.c \
 			  render_map.c \
 			  textures.c \
+			  player_events.c \
 			  get_next_line.c \
 			  get_next_line_utils.c 
 SRC_DIR		= src
