@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:14:21 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/22 18:01:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:43:33 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static void	player_action(t_game *game, int x, int y)
 {
 	if (game->map.map[y][x] == 'C')
 	{
+		if(game->map.collected == game->map.collectibles - 1)
+			show_game_msg(GAME_LAST_COLLECTED);
+		else
+			show_game_msg(GAME_COLLECTED);
 		game->map.collected++;
 		game->map.map[y][x] = '0';
 		item_collected(game, x, y);
@@ -65,6 +69,8 @@ void	move_player(t_game *game, int move_y, int move_x)
 
 		game->map.player_x = next_x;
 		game->map.player_y = next_y;
+		
+		//game->player
 
 		game->map.moves++;
 		show_game_msg(GAME_MOVES);

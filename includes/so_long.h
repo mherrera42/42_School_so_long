@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/22 14:47:29 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:18:20 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef enum e_msg
 {
 	GAME_SUCCESS = 0,
 	GAME_MISSING_COL,
+	GAME_COLLECTED,
+	GAME_LAST_COLLECTED,
 	GAME_MOVES,
 	ERR_ARGS,
 	ERR_FD,

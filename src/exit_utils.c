@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/22 14:54:21 by mherrera         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:17:47 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_map(char **map, int n_lines)
 	}
 	free(map);
 }
-//choose error message from enum
+// choose error message from enum
 int	show_err_msg(t_msg code)
 {
 	if (code == ERR_ARGS)
@@ -49,28 +49,33 @@ int	show_err_msg(t_msg code)
 		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
 	return (EXIT_FAILURE);
 }
-//choose game message from enum
+// choose game message from enum
 int	show_game_msg(t_msg code)
 {
 	if (code == GAME_SUCCESS)
-		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ", 1);
-		
+		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ\n", 1);
 	if (code == GAME_MISSING_COL)
 	{
-		ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^",
+		ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^\n",
 			1);
 		return (EXIT_FAILURE);
 	}
 	if (code == GAME_MOVES)
 		ft_putstr_fd("Current mewvements ฅᨐฅ : ", 1);
+	if (code == GAME_COLLECTED)
+		ft_putstr_fd("A piece of your mewmory... What does it says? ᨐฅ\n", 1);
+	if (code == GAME_LAST_COLLECTED)
+		ft_putstr_fd("Now you remember everything! ฅᨐฅ It's time to go...\n",
+			1);
 	return (EXIT_SUCCESS);
 }
-//maximo 4 variables como parametro 
-//throw error and choose behavior
+// maximo 4 variables como parametro
+// throw error and choose behavior
 /*
 int	throw_error(t_game *game, t_msg code, int fd, char *line, int free_mode)
 {
 	int	y;
+
 	y = -1;
 	choose_err_msg(code);
 	//funcion de liberacion parcial y quito fd y line
