@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 10:45:43 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:28:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ typedef enum e_msg
 // map struct
 typedef struct s_map
 {
-	char **map;   // Matriz en la que se guardará el mapa
-	int width;    // Ancho del mapa
-	int height;   // Alto del mapa
-	int player;   // Numero de jugadores
-	int player_x; // Posición del player en x
-	int player_y; // Posición del player en y
-	int exit;     // Numero de salidas (debe haber 1)
-	int	exit_reach; //Nº de salidas alcanzables 
-	int collectibles; // Nº de coleccionables,
-	int	collect_reach; //Nº de coleccionables alcanzables
-	int collected; // Coleccionables obtenidos
+	char **map;
+	int width;
+	int height;
+	int player;
+	int player_x;
+	int player_y;
+	int exit;
+	int	exit_reach;
+	int collectibles;
+	int	collect_reach;
+	int collected;
 	int	moves;
 }				t_map;
 
@@ -62,18 +62,16 @@ typedef struct s_map
 typedef struct s_game
 {
 	mlx_t		*mlx;
-	mlx_image_t	*player;
+	mlx_image_t	*player_r;
 	mlx_image_t *player_l;
 	mlx_image_t	*floor;
 	mlx_image_t	*walls;
 	mlx_image_t	*collect;
 	mlx_image_t	*exit;
 	t_map		map;
-	// t_msg		msg;
 }				t_game;
 
 // main.c
-// int				error_msg(char *msg, int fd);
 void			init_MLX42(t_game *game);
 void			init_game(t_game *game);
 void			keyhook(mlx_key_data_t keydata, void *param);
@@ -82,8 +80,6 @@ void			keyhook(mlx_key_data_t keydata, void *param);
 void			free_map(char **map, int n_lines);
 int				show_err_msg(t_msg code);
 int				show_game_msg(t_msg code);
-/* int				throw_error(t_game *game, t_msg code, int fd, char *line,
-					int free_mode); */
 
 // general_utils.c
 void			ft_putnbr_fd(int n, int fd);
@@ -109,13 +105,12 @@ int				check_valid_path(t_game *game);
 
 // render_map.c
 void			render_map(t_game *game);
-void			render_assets(t_game *game, int x, int y);
 
 // textures.c
 void			load_texture(t_game *game, mlx_image_t **img, char *path);
 void			init_textures(t_game *game);
 
 // player_events.c
-void	move_player(t_game *game, int y, int x);
+void			move_player(t_game *game, int y, int x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 13:35:57 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:30:35 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	init_MLX42(t_game *game)
 	render_map(game);
 	mlx_key_hook(game->mlx, &keyhook, game);
 	mlx_loop(game->mlx);
-	mlx_delete_image(game->mlx, game->player);
+	mlx_delete_image(game->mlx, game->player_r);
+	mlx_delete_image(game->mlx, game->player_l);
 	mlx_terminate(game->mlx);
 }
 
@@ -55,9 +56,18 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
 			move_player(game, 1, 0);
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
+		{
 			move_player(game, 0, 1);
+			game->player_l->instances[0].enabled = false;
+    		game->player_r->instances[0].enabled = true;
+		}
+			
 		else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
+		{
 			move_player(game, 0, -1);
+			game->player_l->instances[0].enabled = true;
+    		game->player_r->instances[0].enabled = false;
+		}
 	}
 }
 

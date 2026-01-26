@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/23 13:17:47 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:23:51 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,3 @@ int	show_game_msg(t_msg code)
 			1);
 	return (EXIT_SUCCESS);
 }
-// maximo 4 variables como parametro
-// throw error and choose behavior
-/*
-int	throw_error(t_game *game, t_msg code, int fd, char *line, int free_mode)
-{
-	int	y;
-
-	y = -1;
-	choose_err_msg(code);
-	//funcion de liberacion parcial y quito fd y line
-	if (line)
-		free(line);
-	if (fd >= 0)
-		close(fd);
-	if (free_mode == 1)
-	{
-		if (game->map.map)
-		{
-			while (y++ < game->map.height)
-				if (game->map.map[y])
-					free(game->map.map[y]);
-			free(game->map.map);
-		}
-	}
-	return (EXIT_FAILURE);
-}
-*/
