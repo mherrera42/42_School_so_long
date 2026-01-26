@@ -6,24 +6,24 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:31:17 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:43:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include <stdio.h>
 
-//renders (or draws) the player
+// renders (or draws) the player
 static void	render_player(t_game *game)
 {
-	mlx_image_to_window(game->mlx, game->player_r,
-		game->map.player_x * TILE_SIZE, game->map.player_y * TILE_SIZE);
-	mlx_image_to_window(game->mlx, game->player_l,
-		game->map.player_x * TILE_SIZE, game->map.player_y * TILE_SIZE);
-		
+	mlx_image_to_window(game->mlx, game->player_r, game->map.player_x
+		* TILE_SIZE, game->map.player_y * TILE_SIZE);
+	mlx_image_to_window(game->mlx, game->player_l, game->map.player_x
+		* TILE_SIZE, game->map.player_y * TILE_SIZE);
 	game->player_l->instances[0].enabled = false;
 	game->player_r->instances[0].enabled = true;
 }
+
 // renders (or draws) the assets (collectibles and exit)
 static void	render_assets(t_game *game, int x, int y)
 {

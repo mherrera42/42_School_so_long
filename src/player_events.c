@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:14:21 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:28:23 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:34:31 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,8 @@ void	move_player(t_game *game, int move_y, int move_x)
 		game->player_r->instances[0].x = next_x * TILE_SIZE;
 		game->player_l->instances[0].y = next_y * TILE_SIZE;
 		game->player_l->instances[0].x = next_x * TILE_SIZE;
-
 		game->map.player_x = next_x;
 		game->map.player_y = next_y;
-		
-		//game->player
-
 		game->map.moves++;
 		show_game_msg(GAME_MOVES);
 		ft_putnbr_fd(game->map.moves, 1);

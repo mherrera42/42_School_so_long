@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:30:35 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:42:39 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_game(t_game *game)
 	game->map.moves = 0;
 	game->mlx = NULL;
 }
+
 void	keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
@@ -59,14 +60,13 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		{
 			move_player(game, 0, 1);
 			game->player_l->instances[0].enabled = false;
-    		game->player_r->instances[0].enabled = true;
+			game->player_r->instances[0].enabled = true;
 		}
-			
 		else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
 		{
 			move_player(game, 0, -1);
 			game->player_l->instances[0].enabled = true;
-    		game->player_r->instances[0].enabled = false;
+			game->player_r->instances[0].enabled = false;
 		}
 	}
 }

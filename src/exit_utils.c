@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:23:51 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:41:57 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	free_map(char **map, int n_lines)
 	}
 	free(map);
 }
+
 // choose error message from enum
 int	show_err_msg(t_msg code)
 {
@@ -49,6 +50,7 @@ int	show_err_msg(t_msg code)
 		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
 	return (EXIT_FAILURE);
 }
+
 // choose game message from enum
 int	show_game_msg(t_msg code)
 {

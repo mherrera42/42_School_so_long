@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/16 18:10:15 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:43:45 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	check_extension(char *filename)
 		return (1);
 	return (0);
 }
+
 // checks the format of the map
 void	format_map(char *line)
 {
@@ -31,21 +32,23 @@ void	format_map(char *line)
 	if (line_end_pos)
 		*line_end_pos = '\0';
 }
+
 // checks if the map is a quad or a rectangle
 int	check_is_quad(t_game *game, int width_prev)
 {
 	if (width_prev && width_prev != game->map.width)
 	{
-		//checkear esta liberacion
+		// checkear esta liberacion
 		free_map(game->map.map, game->map.height);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
+
 // checks if the char in the given map are valid
 int	check_map_char(t_game *game, char *line, int y)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (line[x])
@@ -57,7 +60,7 @@ int	check_map_char(t_game *game, char *line, int y)
 		{
 			game->map.player_x = x;
 			game->map.player_y = y;
-			game->map.player ++;
+			game->map.player++;
 		}
 		else if (line[x] == 'C')
 			game->map.collectibles++;

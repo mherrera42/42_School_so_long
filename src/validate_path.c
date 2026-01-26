@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 19:00:54 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:44:18 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**copy_map(t_game *game)
 	while (y < game->map.height)
 	{
 		map_copy[y] = malloc((game->map.width + 1) * sizeof(char));
-		if (!map_copy[y]) 
+		if (!map_copy[y])
 		{
 			free_map(map_copy, y);
 			return (NULL);
@@ -36,6 +36,7 @@ char	**copy_map(t_game *game)
 	map_copy[y] = NULL;
 	return (map_copy);
 }
+
 // checks all the positions around the character
 void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
@@ -47,22 +48,23 @@ void	flood_fill(t_game *game, char **map_copy, int x, int y)
 		game->map.collect_reach++;
 	if (map_copy[y][x] == 'E')
 		game->map.exit_reach++;
-	map_copy[y][x] = 'F'; 
+	map_copy[y][x] = 'F';
 	flood_fill(game, map_copy, x + 1, y);
 	flood_fill(game, map_copy, x - 1, y);
 	flood_fill(game, map_copy, x, y + 1);
 	flood_fill(game, map_copy, x, y - 1);
 }
+
 // checks that there's a valid path to the exit and all the collectibles in the map
 int	check_valid_path(t_game *game)
 {
-	char **map_copy;
+	char	**map_copy;
 
 	map_copy = copy_map(game);
 	if (!map_copy)
 	{
 		show_err_msg(ERR_MALLOC);
-		return (EXIT_FAILURE); 
+		return (EXIT_FAILURE);
 	}
 	flood_fill(game, map_copy, game->map.player_x, game->map.player_y);
 	free_map(map_copy, game->map.height);

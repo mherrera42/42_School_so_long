@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:28:33 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:43:27 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path)
 {
 	mlx_texture_t	*texture;
 
-	// load the file
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
@@ -25,9 +24,7 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path)
 		mlx_terminate(game->mlx);
 		exit(EXIT_FAILURE);
 	}
-	// convert texture to a image (instance or copy of the texture)
 	*img = mlx_texture_to_image(game->mlx, texture);
-	// deletes the texture because it was already sent to the image
 	mlx_delete_texture(texture);
 	if (!(*img))
 	{
