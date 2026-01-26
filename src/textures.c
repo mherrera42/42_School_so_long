@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 17:35:03 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:33:32 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	load_texture(t_game *game, mlx_image_t **img, char *path)
 void	init_textures(t_game *game)
 {
 	load_texture(game, &game->player, "includes/textures/player.png");
+	load_texture(game, &game->player_l, "includes/textures/player_l.png");
 	load_texture(game, &game->floor, "includes/textures/floor.png");
 	load_texture(game, &game->walls, "includes/textures/wall.png");
 	load_texture(game, &game->collect, "includes/textures/collect.png");

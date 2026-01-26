@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 19:26:47 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 13:00:11 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	alloc_map_line(t_game *game, int y, char *line)
 	return (EXIT_SUCCESS);
 }
 // reads the map, allocating memory for it, and saving it in a matrix
-// podria llamar una funcion de liberacion parcial aqui, y usar en map
 int	read_map(t_game *game, char *filename)
 {
 	int		fd;

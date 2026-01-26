@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/23 13:18:20 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/26 10:45:43 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*player;
+	mlx_image_t *player_l;
 	mlx_image_t	*floor;
 	mlx_image_t	*walls;
 	mlx_image_t	*collect;
