@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:44:26 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:57:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	init_mlx42(t_game *game)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
+	game->mlx = mlx_init(game->map.width * TILE_SIZE,
+			game->map.height * TILE_SIZE, "so_long", true);
 	if (!game->mlx)
 		show_err_msg(ERR_MLX_LOAD);
 	init_textures(game);

@@ -6,17 +6,13 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:53:42 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:55:50 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
-# define WIDTH 1920
-# define HEIGHT 1080
 # define TILE_SIZE 64
-
 # include "MLX42/include/MLX42/MLX42.h"	
 # include "get_next_line.h"
 # include <fcntl.h>
