@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:55:50 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 21:07:00 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ size_t	ft_strlen(const char *s);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(char *s1, char *s2, size_t n);
 
-// read_map.c
+// measure_map.c
 int		measure_map(t_game *game, char *filename);
+
+// read_map.c
 int		read_map(t_game *game, char *filename);
 
 // validate_map.c

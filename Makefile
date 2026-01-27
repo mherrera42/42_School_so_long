@@ -9,12 +9,13 @@ SRC_FILES	= main.c \
 			  exit_utils.c \
 			  validate_map.c \
 			  validate_path.c \
+			  measure_map.c \
 			  read_map.c \
 			  render_map.c \
 			  textures.c \
 			  player_events.c \
 			  get_next_line.c \
-			  get_next_line_utils.c 
+			  get_next_line_utils.c
 SRC_DIR		= src
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
