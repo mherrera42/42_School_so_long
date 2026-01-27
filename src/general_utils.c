@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2025/12/18 18:37:24 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:47:07 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ char	*ft_strrchr(const char *s, int c)
 // between them. Returns 0 if they're the same
 int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	size_t i;
-	char *str1;
-	char *str2;
+	size_t	i;
+	char	*str1;
+	char	*str2;
 
 	i = 0;
 	str1 = s1;

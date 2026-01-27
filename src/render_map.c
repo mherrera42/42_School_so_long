@@ -6,12 +6,11 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 21:19:38 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:43:16 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:42:13 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdio.h>
 
 // renders (or draws) the player
 static void	render_player(t_game *game)

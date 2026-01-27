@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:43:45 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:45:57 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	check_extension(char *filename)
 
 	extension = ft_strrchr(filename, '.');
 	if (!extension || ft_strncmp(extension, ".ber", 5) != 0)
-		return (1);
-	return (0);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 // checks the format of the map
@@ -38,7 +38,6 @@ int	check_is_quad(t_game *game, int width_prev)
 {
 	if (width_prev && width_prev != game->map.width)
 	{
-		// checkear esta liberacion
 		free_map(game->map.map, game->map.height);
 		return (EXIT_FAILURE);
 	}

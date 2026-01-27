@@ -6,13 +6,13 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:42:39 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:44:26 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_MLX42(t_game *game)
+static void	init_mlx42(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "so_long", true);
 	if (!game->mlx)
@@ -26,7 +26,7 @@ void	init_MLX42(t_game *game)
 	mlx_terminate(game->mlx);
 }
 
-void	init_game(t_game *game)
+static void	init_game(t_game *game)
 {
 	game->map.map = NULL;
 	game->map.width = 0;
@@ -77,11 +77,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (show_err_msg(ERR_ARGS));
-	if (check_extension(argv[1]) == 1)
+	if (check_extension(argv[1]) == EXIT_FAILURE)
 		return (show_err_msg(ERR_MAP_EXT));
 	init_game(&game);
-	measure_map(&game, argv[1]);
-	read_map(&game, argv[1]);
-	init_MLX42(&game);
+	if (measure_map(&game, argv[1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (read_map(&game, argv[1]) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	init_mlx42(&game);
+	free_map(game.map.map, game.map.height);
 	return (EXIT_SUCCESS);
 }

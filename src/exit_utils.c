@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 16:51:03 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:50:27 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	free_map(char **map, int n_lines)
 int	show_err_msg(t_msg code)
 {
 	if (code == ERR_ARGS)
-		ft_putstr_fd("Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n",
-			2);
+		ft_putstr_fd(
+			"Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n", 2);
 	if (code == ERR_MAP_EXT)
 		ft_putstr_fd("U sure the file has a valid extension? ฅᨐฅ\n", 2);
 	if (code == ERR_MALLOC)
@@ -58,8 +58,8 @@ int	show_game_msg(t_msg code)
 		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ\n", 1);
 	if (code == GAME_MISSING_COL)
 	{
-		ft_putstr_fd("U didn't collect all the letters... Your precious mewmories! ^╥˕╥^\n",
-			1);
+		ft_putstr_fd("U didn't collect all the letters... \
+			Your precious mewmories! ^╥˕╥^\n", 1);
 		return (EXIT_FAILURE);
 	}
 	if (code == GAME_MOVES)

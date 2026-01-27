@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:14:21 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:34:31 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:48:11 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	item_collected(t_game *game, int x, int y)
 	i = 0;
 	while (i < game->collect->count)
 	{
-		if (game->collect->instances[i].enabled == true &&
-			game->collect->instances[i].x == x * TILE_SIZE &&
-			game->collect->instances[i].y == y * TILE_SIZE)
+		if (game->collect->instances[i].enabled == true
+			&& game->collect->instances[i].x == x * TILE_SIZE
+			&& game->collect->instances[i].y == y * TILE_SIZE)
 		{
 			game->collect->instances[i].enabled = false;
 			return ;
@@ -34,7 +34,7 @@ static void	player_action(t_game *game, int x, int y)
 {
 	if (game->map.map[y][x] == 'C')
 	{
-		if(game->map.collected == game->map.collectibles - 1)
+		if (game->map.collected == game->map.collectibles - 1)
 			show_game_msg(GAME_LAST_COLLECTED);
 		else
 			show_game_msg(GAME_COLLECTED);
@@ -56,12 +56,11 @@ static void	player_action(t_game *game, int x, int y)
 
 void	move_player(t_game *game, int move_y, int move_x)
 {
-	int next_x;
-	int next_y;
+	int	next_x;
+	int	next_y;
 
 	next_x = game->map.player_x + move_x;
 	next_y = game->map.player_y + move_y;
-
 	if (game->map.map[next_y][next_x] != '1')
 	{
 		game->player_r->instances[0].y = next_y * TILE_SIZE;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 16:56:54 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:49:37 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static int	fill_map(t_game *game, int fd)
 		}
 		free(line);
 		y++;
-		
 	}
 	return (EXIT_SUCCESS);
 }

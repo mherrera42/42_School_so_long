@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 16:53:14 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:45:33 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,45 +72,40 @@ typedef struct s_game
 }				t_game;
 
 // main.c
-void			init_MLX42(t_game *game);
-void			init_game(t_game *game);
-void			keyhook(mlx_key_data_t keydata, void *param);
+void	keyhook(mlx_key_data_t keydata, void *param);
 
 // exit_utils.c
-void			free_map(char **map, int n_lines);
-int				show_err_msg(t_msg code);
-int				show_game_msg(t_msg code);
+void	free_map(char **map, int n_lines);
+int		show_err_msg(t_msg code);
+int		show_game_msg(t_msg code);
 
 // general_utils.c
-void			ft_putnbr_fd(int n, int fd);
-void			ft_putstr_fd(char *msg, int fd);
-size_t			ft_strlen(const char *s);
-char			*ft_strrchr(const char *s, int c);
-int				ft_strncmp(char *s1, char *s2, size_t n);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *msg, int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strrchr(const char *s, int c);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 
 // read_map.c
-int				measure_map(t_game *game, char *filename);
-int				read_map(t_game *game, char *filename);
+int		measure_map(t_game *game, char *filename);
+int		read_map(t_game *game, char *filename);
 
 // validate_map.c
-int				check_extension(char *filename);
-void			format_map(char *line);
-int				check_is_quad(t_game *game, int width_prev);
-int				check_map_char(t_game *game, char *line, int y);
+int		check_extension(char *filename);
+void	format_map(char *line);
+int		check_is_quad(t_game *game, int width_prev);
+int		check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
-//char			**copy_map(t_game *game);
-//void			flood_fill(t_game *game, char **map_copy, int x, int y);
-int				check_valid_path(t_game *game);
+int		check_valid_path(t_game *game);
 
 // render_map.c
-void			render_map(t_game *game);
+void	render_map(t_game *game);
 
 // textures.c
-//void			load_texture(t_game *game, mlx_image_t **img, char *path);
-void			init_textures(t_game *game);
+void	init_textures(t_game *game);
 
 // player_events.c
-void			move_player(t_game *game, int y, int x);
+void	move_player(t_game *game, int y, int x);
 
 #endif

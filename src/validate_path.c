@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 16:52:14 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:50:00 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	flood_fill(t_game *game, char **map_copy, int x, int y)
 	flood_fill(game, map_copy, x, y - 1);
 }
 
-// checks that there's a valid path to the exit and all the collectibles in the map
+// checks that there's a valid path to the exit
+// and all the collectibles in the map
 int	check_valid_path(t_game *game)
 {
 	char	**map_copy;
