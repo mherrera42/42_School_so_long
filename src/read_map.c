@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:43:05 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:56:54 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,44 @@ static int	alloc_map_line(t_game *game, int y, char *line)
 	return (EXIT_SUCCESS);
 }
 
-// reads the map, allocating memory for it, and saving it in a matrix
-int	read_map(t_game *game, char *filename)
+// reads the file with the map line by line, using gnl
+static int	fill_map(t_game *game, int fd)
 {
-	int		fd;
 	int		y;
 	char	*line;
 
 	y = 0;
-	line = NULL;
+	while (y < game->map.height)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (EXIT_FAILURE);
+		if (alloc_map_line(game, y, line) == EXIT_FAILURE)
+		{
+			free(line);
+			return (EXIT_FAILURE);
+		}
+		free(line);
+		y++;
+		
+	}
+	return (EXIT_SUCCESS);
+}
+
+// reads the map, allocating memory for it, and saving it in a matrix
+int	read_map(t_game *game, char *filename)
+{
+	int	fd;
+
 	if (alloc_map_matrix(game) == EXIT_FAILURE)
 		return (show_err_msg(ERR_MALLOC));
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (show_err_msg(ERR_FD));
-	line = get_next_line(fd);
-	while (y < game->map.height)
+	if (fill_map(game, fd) == EXIT_FAILURE)
 	{
-		if (alloc_map_line(game, y, line) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-		free(line);
-		line = get_next_line(fd);
-		y++;
+		close(fd);
+		return (EXIT_FAILURE);
 	}
 	close(fd);
 	if (check_valid_path(game) == EXIT_FAILURE)

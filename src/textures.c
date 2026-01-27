@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:43:27 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:53:10 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	load_texture(t_game *game, mlx_image_t **img, char *path)
+static void	load_texture(t_game *game, mlx_image_t **img, char *path)
 {
 	mlx_texture_t	*texture;
 

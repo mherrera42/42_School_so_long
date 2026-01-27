@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   validate_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:44:18 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:52:14 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 // copies the map to work with floodfill
-char	**copy_map(t_game *game)
+static char	**copy_map(t_game *game)
 {
 	char	**map_copy;
 	int		y;
@@ -38,7 +38,7 @@ char	**copy_map(t_game *game)
 }
 
 // checks all the positions around the character
-void	flood_fill(t_game *game, char **map_copy, int x, int y)
+static void	flood_fill(t_game *game, char **map_copy, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= game->map.width || y >= game->map.height)
 		return ;

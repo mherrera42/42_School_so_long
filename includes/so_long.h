@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mherrera <mherrera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/26 15:28:16 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:53:14 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ int				check_is_quad(t_game *game, int width_prev);
 int				check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
-char			**copy_map(t_game *game);
-void			flood_fill(t_game *game, char **map_copy, int x, int y);
+//char			**copy_map(t_game *game);
+//void			flood_fill(t_game *game, char **map_copy, int x, int y);
 int				check_valid_path(t_game *game);
 
 // render_map.c
 void			render_map(t_game *game);
 
 // textures.c
-void			load_texture(t_game *game, mlx_image_t **img, char *path);
+//void			load_texture(t_game *game, mlx_image_t **img, char *path);
 void			init_textures(t_game *game);
 
 // player_events.c
