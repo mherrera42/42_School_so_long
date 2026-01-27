@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:45:33 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 20:53:42 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,37 @@ typedef enum e_msg
 	ERR_MAP_QUAD,
 	ERR_MAP_FORMAT,
 	ERR_MLX_LOAD,
-}				t_msg;
+}	t_msg;
 
 // map struct
 typedef struct s_map
 {
-	char **map;
-	int width;
-	int height;
-	int player;
-	int player_x;
-	int player_y;
-	int exit;
-	int	exit_reach;
-	int collectibles;
-	int	collect_reach;
-	int collected;
-	int	moves;
-}				t_map;
+	char	**map;
+	int		width;
+	int		height;
+	int		player;
+	int		player_x;
+	int		player_y;
+	int		exit;
+	int		exit_reach;
+	int		collectibles;
+	int		collect_reach;
+	int		collected;
+	int		moves;
+}	t_map;
 
 // game struct
 typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*player_r;
-	mlx_image_t *player_l;
+	mlx_image_t	*player_l;
 	mlx_image_t	*floor;
 	mlx_image_t	*walls;
 	mlx_image_t	*collect;
 	mlx_image_t	*exit;
 	t_map		map;
-}				t_game;
+}	t_game;
 
 // main.c
 void	keyhook(mlx_key_data_t keydata, void *param);
