@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:50:27 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/27 21:01:27 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	show_game_msg(t_msg code)
 		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ\n", 1);
 	if (code == GAME_MISSING_COL)
 	{
-		ft_putstr_fd("U didn't collect all the letters... \
-			Your precious mewmories! ^╥˕╥^\n", 1);
+		ft_putstr_fd("U didn't collect all the letters... ", 1);
+		ft_putstr_fd("precious mewmories! ^╥˕╥^\n", 1);
 		return (EXIT_FAILURE);
 	}
 	if (code == GAME_MOVES)
