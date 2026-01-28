@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:57:16 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:49:16 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	init_mlx42(t_game *game)
 	render_map(game);
 	mlx_key_hook(game->mlx, &keyhook, game);
 	mlx_loop(game->mlx);
-	mlx_delete_image(game->mlx, game->player_r);
-	mlx_delete_image(game->mlx, game->player_l);
 	mlx_terminate(game->mlx);
 }
 
