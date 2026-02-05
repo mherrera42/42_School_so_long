@@ -26,7 +26,7 @@ OBJ			= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 #Include Directories
 INCLUDES	= -I./includes/MLX42/include
 # MLX42 Config
-MLX42_DIR	= includes/MLX42/build/
+MLX42_DIR	= includes/MLX42_build
 MLX42		= $(MLX42_DIR)/libmlx42.a
 CFLAGS		= -Wall -Wextra -Werror $(INCLUDES)
 FLAGS_MLX	= -ldl -lglfw -pthread -lm
@@ -47,7 +47,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX42) -o $(NAME) $(FLAGS_MLX)
 	@echo -e '$(GREEN) Linking finished!🌱🌼 $(NAME) is ready!$(NC)'
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c includes/so_long.h | $(OBJ_DIR)
 	@echo -e '$(PINK) $< 🌱 Bugs are building$.... 🐞 $(NC)'
 	@$(CC) $(CFLAGS) -c $< -o $@
 
