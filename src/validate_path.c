@@ -6,11 +6,34 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 16:35:54 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:50:00 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:28 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+//checks the map is closed
+int	check_closed_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			if ((y == 0 || y == game->map.height - 1
+					|| x == 0 || x == game->map.width - 1)
+				&& game->map.map[y][x] != '1')
+				return (show_err_msg(ERR_MAP_FORMAT));
+			x++;
+		}
+		y++;
+	}
+	return (EXIT_SUCCESS);
+}
 
 // copies the map to work with floodfill
 static char	**copy_map(t_game *game)
@@ -63,18 +86,12 @@ int	check_valid_path(t_game *game)
 
 	map_copy = copy_map(game);
 	if (!map_copy)
-	{
-		show_err_msg(ERR_MALLOC);
-		return (EXIT_FAILURE);
-	}
+		return (show_err_msg(ERR_MALLOC));
 	flood_fill(game, map_copy, game->map.player_x, game->map.player_y);
 	free_map(map_copy, game->map.height);
 	if (game->map.collectibles != game->map.collect_reach)
-		return (EXIT_FAILURE);
+		return (show_err_msg(ERR_MAP_PATH));
 	if (game->map.exit_reach != 1)
-	{
-		show_err_msg(ERR_MAP_FORMAT);
-		return (EXIT_FAILURE);
-	}
+		return (show_err_msg(ERR_MAP_FORMAT));
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:31:35 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 21:31:39 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:34:17 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	alloc_map_matrix(t_game *game)
 static int	alloc_map_line(t_game *game, int y, char *line)
 {
 	format_map(line);
-	if (check_map_char(game, line, y) == EXIT_FAILURE)
-		return (show_err_msg(ERR_MAP_FORMAT));
 	game->map.map[y] = malloc((game->map.width + 1) * sizeof(char));
 	if (!game->map.map[y])
 		return (EXIT_FAILURE);
@@ -35,7 +33,7 @@ static int	alloc_map_line(t_game *game, int y, char *line)
 }
 
 // reads the file with the map line by line, using gnl
-static int	fill_map(t_game *game, int fd)
+static int	reading_loop(t_game *game, int fd)
 {
 	int		y;
 	char	*line;
@@ -71,13 +69,13 @@ int	read_map(t_game *game, char *filename)
 		free_map(game->map.map, 0);
 		return (show_err_msg(ERR_FD));
 	}
-	if (fill_map(game, fd) == EXIT_FAILURE)
+	if (reading_loop(game, fd) == EXIT_FAILURE)
 	{
 		close(fd);
 		return (EXIT_FAILURE);
 	}
 	close(fd);
-	if (check_valid_path(game) == EXIT_FAILURE)
+	if (check_valid_path(game) || check_closed_map(game))
 	{
 		free_map(game->map.map, game->map.height);
 		return (EXIT_FAILURE);

@@ -6,12 +6,13 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/28 16:49:06 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:31 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//transform each texture into an image
 static void	load_texture(t_game *game, mlx_image_t **img, char *path)
 {
 	mlx_texture_t	*texture;
@@ -36,6 +37,7 @@ static void	load_texture(t_game *game, mlx_image_t **img, char *path)
 	}
 }
 
+//initialize the textures with the MLX function
 void	init_textures(t_game *game)
 {
 	load_texture(game, &game->player_r, "includes/textures/player_r.png");

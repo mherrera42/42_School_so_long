@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 12:14:21 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 20:48:11 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:37 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	item_collected(t_game *game, int x, int y)
 	}
 }
 
+//player's actions (collecting collectibles and exit)
 static void	player_action(t_game *game, int x, int y)
 {
 	if (game->map.map[y][x] == 'C')
@@ -54,6 +55,7 @@ static void	player_action(t_game *game, int x, int y)
 	}
 }
 
+//player's movement
 void	move_player(t_game *game, int move_y, int move_x)
 {
 	int	next_x;

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 21:37:29 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:45 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,34 @@ void	free_map(char **map, int n_lines)
 	free(map);
 }
 
+static void	put_err_msg(char *str)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(str, 2);
+}
+
 // choose error message from enum
 int	show_err_msg(t_msg code)
 {
 	if (code == ERR_ARGS)
-		ft_putstr_fd(
-			"Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n", 2);
+		put_err_msg(
+			"Mmmm... The number of arguments meow be incorrect... ฅ ฅ\n");
 	if (code == ERR_MAP_EXT)
-		ft_putstr_fd("U sure the file has a valid extension? ฅᨐฅ\n", 2);
+		put_err_msg("U sure the file has a valid extension? ฅᨐฅ\n");
 	if (code == ERR_MALLOC)
-		ft_putstr_fd("Mewmory couldn't be allocated ^╥˕╥^", 2);
+		put_err_msg("Mewmory couldn't be allocated ^╥˕╥^\n");
 	if (code == ERR_FD)
-		ft_putstr_fd("Meow? The file can't be opened! ᨐฅ\n", 2);
+		put_err_msg("Meow? The file can't be opened! ᨐฅ\n");
 	if (code == ERR_MAP_SMALL)
-		ft_putstr_fd("Meow? The map is too smawll! ฅ ฅ \n", 2);
+		put_err_msg("Meow? The map is too smawll! ฅ ฅ\n");
 	if (code == ERR_MAP_QUAD)
-		ft_putstr_fd("What? The mawp is not a quadrangle! ᨐฅ\n", 2);
+		put_err_msg("What? The mawp is not a quadrangle! ᨐฅ\n");
 	if (code == ERR_MAP_FORMAT)
-		ft_putstr_fd("Mawp has an incorrect formawt! ^╥˕╥^\n", 2);
+		put_err_msg("Mawp has an incorrect formawt! ^╥˕╥^\n");
+	if (code == ERR_MAP_PATH)
+		put_err_msg("Meow? The path is blowcked! ^╥˕╥^\n");
 	if (code == ERR_MLX_LOAD)
-		ft_putstr_fd("There was a problem loawding ᨐฅ\n", 2);
+		put_err_msg("There was a problem loawding ᨐฅ\n");
 	return (EXIT_FAILURE);
 }
 
@@ -59,7 +67,7 @@ int	show_game_msg(t_msg code)
 	if (code == GAME_MISSING_COL)
 	{
 		ft_putstr_fd("U didn't collect all the letters... ", 1);
-		ft_putstr_fd("precious mewmories! ^╥˕╥^\n", 1);
+		ft_putstr_fd("Your precious mewmories! ^╥˕╥^\n", 1);
 		return (EXIT_FAILURE);
 	}
 	if (code == GAME_MOVES)

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/27 21:42:27 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:00:46 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef enum e_msg
 	ERR_MAP_SMALL,
 	ERR_MAP_QUAD,
 	ERR_MAP_FORMAT,
+	ERR_MAP_PATH,
 	ERR_MLX_LOAD,
 }	t_msg;
 
@@ -52,6 +53,7 @@ typedef struct s_map
 	int		collect_reach;
 	int		collected;
 	int		moves;
+	int		bad_char;
 }	t_map;
 
 // game struct
@@ -92,13 +94,15 @@ int		read_map(t_game *game, char *filename);
 int		check_extension(char *filename);
 void	format_map(char *line);
 int		check_is_quad(t_game *game, int width_prev);
-int		check_map_char(t_game *game, char *line, int y);
+void	check_map_char(t_game *game, char *line, int y);
 
 // validate_path.c
+int		check_closed_map(t_game *game);
 int		check_valid_path(t_game *game);
 
 // render_map.c
 void	render_map(t_game *game);
+int		check_game_assets(t_game *game);
 
 // textures.c
 void	init_textures(t_game *game);

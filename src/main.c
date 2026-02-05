@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/01/28 16:49:16 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/05 21:20:46 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	init_game(t_game *game)
 	game->map.collect_reach = 0;
 	game->map.collected = 0;
 	game->map.moves = 0;
+	game->map.bad_char = 0;
 	game->mlx = NULL;
 }
 
@@ -81,6 +82,8 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	if (measure_map(&game, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	if (check_game_assets(&game) == EXIT_FAILURE)
+		return (show_err_msg(ERR_MAP_FORMAT));
 	if (read_map(&game, argv[1]) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_mlx42(&game);
