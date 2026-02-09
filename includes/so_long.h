@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:53:42 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:54:00 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef enum e_msg
 	ERR_ARGS,
 	ERR_FD,
 	ERR_MALLOC,
+	ERR_TEXTURE,
+	ERR_IMG,
 	ERR_MAP_EXT,
 	ERR_MAP_SMALL,
 	ERR_MAP_QUAD,

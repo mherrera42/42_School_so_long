@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 19:50:15 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:00:45 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:58:05 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int	show_err_msg(t_msg code)
 		put_err_msg("Meow? The path is blowcked! ^╥˕╥^\n");
 	if (code == ERR_MLX_LOAD)
 		put_err_msg("There was a problem loawding ᨐฅ\n");
+	if (code == ERR_TEXTURE)
+		put_err_msg("Hey! Where is the texture? There's newo texture! ^╥˕╥^\n");
+	if (code == ERR_IMG)
+		put_err_msg("Failed to convert texture to image! ^╥˕╥^\n");
 	return (EXIT_FAILURE);
 }
 
@@ -66,8 +70,8 @@ int	show_game_msg(t_msg code)
 		ft_putstr_fd("U collected all of your mewmories! Congrats! ฅᨐฅ\n", 1);
 	if (code == GAME_MISSING_COL)
 	{
-		ft_putstr_fd("U didn't collect all the letters... ", 1);
-		ft_putstr_fd("Your precious mewmories! ^╥˕╥^\n", 1);
+		ft_putstr_fd("U didn't collect all the mewmories... ^╥˕╥^ ", 1);
+		ft_putstr_fd("If u give up now, u’ll regret it!\n", 1);
 		return (EXIT_FAILURE);
 	}
 	if (code == GAME_MOVES)

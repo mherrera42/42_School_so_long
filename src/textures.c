@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:10:31 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:00:31 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:24:33 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@ static void	load_texture(t_game *game, mlx_image_t **img, char *path)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		ft_putstr_fd("Hey! Where is the texture? There's newo texture! ^╥˕╥^ ",
-			2);
+		exit(show_err_msg(ERR_TEXTURE));
 		free_map(game->map.map, game->map.height);
 		mlx_terminate(game->mlx);
-		exit(EXIT_FAILURE);
 	}
 	*img = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 	if (!(*img))
 	{
-		ft_putstr_fd("Failed to convert texture to image! ^╥˕╥^", 2);
+		exit(show_err_msg(ERR_IMG));
 		free_map(game->map.map, game->map.height);
 		mlx_terminate(game->mlx);
-		exit(EXIT_FAILURE);
 	}
 }
 
