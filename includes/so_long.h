@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:33:03 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/06 13:54:00 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:36:07 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map
 	int		collected;
 	int		moves;
 	int		bad_char;
+	int		not_quad;
 }	t_map;
 
 // game struct

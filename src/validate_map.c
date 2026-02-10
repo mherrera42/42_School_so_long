@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 19:35:42 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:24:04 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:39:31 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	check_game_assets(t_game *game)
 	if (game->map.collectibles < 1)
 		return (EXIT_FAILURE);
 	if (game->map.bad_char == 1)
+		return (EXIT_FAILURE);
+	if (game->map.not_quad == 1)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:05:37 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:20:46 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:37:06 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	init_game(t_game *game)
 	game->map.collected = 0;
 	game->map.moves = 0;
 	game->map.bad_char = 0;
+	game->map.not_quad = 0;
 	game->mlx = NULL;
 }
 

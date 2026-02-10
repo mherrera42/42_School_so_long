@@ -6,7 +6,7 @@
 /*   By: mherrera <mherrera@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 21:07:24 by mherrera          #+#    #+#             */
-/*   Updated: 2026/02/05 21:30:01 by mherrera         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:36:34 by mherrera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ static int	measuring_loop(t_game *game, int fd)
 		check_map_char(game, line, y++);
 		game->map.width = ft_strlen(line);
 		if (check_is_quad(game, width_prev) == EXIT_FAILURE)
-		{
-			free(line);
-			return (show_err_msg(ERR_MAP_QUAD));
-		}
+			game->map.not_quad = 1;
 		game->map.height++;
 		width_prev = game->map.width;
 		free(line);
